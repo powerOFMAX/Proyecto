@@ -11,8 +11,8 @@
     </head>
     <body>
         <div id="app">
+        asdsd
+        <script src="{{mix('js/app.js')}}"></script>    
         </div>
-        <script src={{mix('js/app.js')}}>
-        </script>    
     </body>
 </html>

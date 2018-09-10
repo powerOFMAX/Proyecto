@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-export default class Example extends Component {
+export default class Index extends Component {
     render() {
         return (
             <div className="container">
@@ -13,6 +13,9 @@ export default class Example extends Component {
                             <div className="card-body">
                                Welcome to my blog!
                             </div>
+                            <button>
+                                hola
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -22,5 +25,5 @@ export default class Example extends Component {
 }
 
 if (document.getElementById('app')) {
-    ReactDOM.render(<Example />, document.getElementById('app'));
+    ReactDOM.render(<Index />, document.getElementById('app'));
 }
