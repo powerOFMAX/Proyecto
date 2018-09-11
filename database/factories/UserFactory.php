@@ -7,6 +7,6 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'name' => $faker-> name(),
         'email' => $faker-> email(),
         'password' => $faker-> userName(),
-        'rol' => 'user',
+        'rol' => 'admin',
     ];
 });
