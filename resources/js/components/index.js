@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 //Conection with redux
 import { connect } from 'react-redux';
 import {  postsFetchData } from '../components/posts/actions';
@@ -19,14 +19,16 @@ class App extends Component {
         }
 
         return (
-            <div>
-                {this.props.posts.map((post) => (
-                    <div key={post.id}> 
-                        {post.title}
-                        {post.description}
-                    </div>
+        <div className="asdasd">
+            <ol>
+            {this.props.posts.map((post) => (
+                console.log(post),
+                <div>
+                    {post.title}
+                </div>
                 ))}
-            </div>
+            </ol>
+        </div>
         );
     }
 }
