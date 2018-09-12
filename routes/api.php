@@ -21,13 +21,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('posts', 'PostController@index');
 
 //Get a specific Post by ID
-Route::get('posts/{post}','PostController@show');
+Route::get('posts/{id}','PostController@show');
 
 //Delete a Post
-Route::delete('posts/{post}', 'PostController@destroy');
+Route::delete('posts/{id}', 'PostController@destroy');
 
 //Update a Post
-Route::put('posts/{post}','PostController@update');
+Route::put('posts/{id}','PostController@update');
 
 //Insert a Post
 Route::post('posts','PostController@store');

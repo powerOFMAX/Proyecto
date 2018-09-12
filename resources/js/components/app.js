@@ -1,63 +1,15 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-//Conection with redux
-import { connect } from 'react-redux';
-import { showPosts } from '../components/posts/actions';
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import configureStore from './posts/post';
 
-//export default class App extends Component {
+import App from './index';
 
+const store = configureStore();
 
-class App extends Component {
-    constructor(props){
-        super(props);
-        this.onShowPost = this.onShowPost.bind(this);
-    }
-
-    onShowPost(){
-        this.props.onShowPost();
-    }
-
-    render() {
-        return (
-
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-md-8">
-                            <div className="card">
-                                <div className="card-header">Example Component</div>
-
-                                <div className="card-body">
-                                Welcome to my blog!
-                                {this.renderPostsList()}
-                                </div>
-                                <button>
-                                    hola
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-        );
-    }
-}
-const postsSelector = createSelector(
-    state => state.posts,
-    posts => posts
+render(
+    <Provider store = {store}>
+        <App/>
+    </Provider>,
+    document.getElementById('app') 
 );
-
-const mapStateToProps = createSelector(
-    postsSelector, (posts) => ({
-        posts,
-    })    
-);
-
-const mapActionsToProps = {
-    onShowPost: showPosts
-};
-
-if (document.getElementById('app')) {
-    ReactDOM.render(<App />, document.getElementById('app'));
-}
-
-export default connect(mapStateToProps, mapActionsToProps) (App);

@@ -1,16 +1,28 @@
-import { SHOW_POSTS } from '../posts/actions';
- 
-const initialState = {
-    list: []
-}
- 
-export default function showPosts(state = initialState, action) {
-    
+import { POSTS_ARE_LOADING, POSTS_HAVE_ERROR, POSTS_FETCH_DATA_SUCCESS } from '../posts/actions';
+
+export function postsHaveError(state = false, action) {
     switch (action.type) {
-        case SHOW_POSTS:
-            return Object.assign({}, state, {list: action.payload})
+        case POSTS_HAVE_ERROR:
+            return action.hasError;
         default:
-            return state 
+            return state;
     }
-    
+}
+
+export function postsAreLoading(state = false, action) {
+    switch (action.type) {
+        case POSTS_ARE_LOADING:
+            return action.isLoading;
+        default:
+            return state;
+    }
+}
+
+export function posts(state = [], action) {
+    switch (action.type) {
+        case POSTS_FETCH_DATA_SUCCESS:
+            return action.posts;
+        default:
+            return state;
+    }
 }
