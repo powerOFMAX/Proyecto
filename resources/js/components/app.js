@@ -1,33 +1,25 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 //Conection with redux
-import { Provider } from "react-redux";
 import { connect } from 'react-redux';
 import { showPosts } from '../components/posts/actions';
 
-import store from "./posts/actions";
 //export default class App extends Component {
 
 
 class App extends Component {
-    componentWillMount(){
-        this.props.showPosts()
+    constructor(props){
+        super(props);
+        this.onShowPost = this.onShowPost.bind(this);
     }
-    renderPostsList(){
-        return this.props.users.map((user) => {
-            return (
-                <div key={user.id}>
-                    {user.id}
-                    {user.name}
-                    {user.email}
-                </div>
-            )
-        })
+
+    onShowPost(){
+        this.props.onShowPost();
     }
 
     render() {
         return (
-            <Provider store={store}>
+
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-8">
@@ -45,19 +37,27 @@ class App extends Component {
                         </div>
                     </div>
                 </div>
-            </Provider>
+
         );
     }
 }
+const postsSelector = createSelector(
+    state => state.posts,
+    posts => posts
+);
 
-function mapStateToProps(state){
-    return{
-        users: state.user.list
-    }
-}
+const mapStateToProps = createSelector(
+    postsSelector, (posts) => ({
+        posts,
+    })    
+);
+
+const mapActionsToProps = {
+    onShowPost: showPosts
+};
 
 if (document.getElementById('app')) {
     ReactDOM.render(<App />, document.getElementById('app'));
 }
 
-export default connect(mapStateToProps, { showPosts }) (App);
+export default connect(mapStateToProps, mapActionsToProps) (App);
