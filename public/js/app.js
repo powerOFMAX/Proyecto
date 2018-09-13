@@ -59888,7 +59888,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
-//Conection with redux
 
 
 
@@ -59925,20 +59924,18 @@ var App = function (_Component) {
                 );
             }
 
+            var pos = 0;
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'asdasd' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'ol',
-                    null,
-                    this.props.posts.map(function (post) {
-                        return console.log(post), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            null,
-                            post.title
-                        );
-                    })
-                )
+                null,
+                this.props.posts.map(function (post) {
+                    return console.log(post), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { key: post[pos].id },
+                        post[pos].title,
+                        pos++
+                    );
+                })
             );
         }
     }]);

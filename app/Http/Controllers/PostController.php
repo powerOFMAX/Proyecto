@@ -11,8 +11,8 @@ class PostController extends Controller
     {   
         try
         {
-            $post = Post::get();
-            return response()->json([$post]);
+            $post = Post::all();
+            return response()->json($post);
         }
         catch(\Exception $e)
         {
@@ -32,9 +32,8 @@ class PostController extends Controller
             ]);
     
             if($validateData->fails()){
-                $errors = $validator->errors();
-                \Log::error('Error in PostController - store method - Failed to validate '.$errors);
-                return response()->json([], 400);
+                $errors = $validateData->errors();
+                return response()->json(['message' => $errors->first()], 400);
             }
             
             $post = Post::create($request->all());
@@ -52,7 +51,7 @@ class PostController extends Controller
         try
         {
             $post = Post::findOrFail($id);
-            return response()->json([$post]);
+            return response()->json($post);
         }
         catch(\Exception $e)
         {
@@ -72,9 +71,8 @@ class PostController extends Controller
             ]);
 
             if($validateData->fails()){
-                $errors = $validator->errors();
-                \Log::error('Error in PostController - store method - Failed to validate'.$errors);
-                return response()->json([], 400);
+                $errors = $validateData->errors();
+                return response()->json([ 'message' => $errors->first()], 400);
             }
 
             $post->update($request->all());

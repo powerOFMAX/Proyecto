@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//Conection with redux
 import { connect } from 'react-redux';
 import {  postsFetchData } from '../components/posts/actions';
 
@@ -8,6 +7,8 @@ class App extends Component {
     componentDidMount(){
         this.props.fetchData('http://127.0.0.1:8000/api/posts/');
     }
+
+
 
     render() {       
         if (this.props.hasError) {
@@ -18,16 +19,16 @@ class App extends Component {
             return <p>Loading Posts...</p>;
         }
 
+        let pos=0;
         return (
-        <div className="asdasd">
-            <ol>
-            {this.props.posts.map((post) => (
+        <div>
+            {this.props.posts.map(post => (
                 console.log(post),
-                <div>
-                    {post.title}
+                <div key={post[pos].id}>
+                    {post[pos].title}
+                {pos++}
                 </div>
                 ))}
-            </ol>
         </div>
         );
     }
