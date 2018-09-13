@@ -37,7 +37,7 @@ class PostController extends Controller
             }
             
             $post = Post::create($request->all());
-            return response()->json([$post], 201);    
+            return response()->json(['post' => $post], 201);    
         }
         catch(\Exception $e)
         {
@@ -56,7 +56,7 @@ class PostController extends Controller
         catch(\Exception $e)
         {
             \Log::error('Error in PostController - show Method '.$e);
-            return response()->json([], 500);
+            return response()->json(null, 500);
         }
     }
 

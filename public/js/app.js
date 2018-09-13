@@ -14559,7 +14559,7 @@ module.exports = ReactPropTypesSecret;
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
 /* unused harmony reexport createProvider */
 /* unused harmony reexport connectAdvanced */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
+/* unused harmony reexport connect */
 
 
 
@@ -15045,7 +15045,7 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return POSTS_HAVE_ERROR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return POSTS_ARE_LOADING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return POSTS_FETCH_DATA_SUCCESS; });
-/* harmony export (immutable) */ __webpack_exports__["d"] = postsFetchData;
+/* unused harmony export postsFetchData */
 /* unused harmony export postsHaveError */
 /* unused harmony export postsAreLoading */
 /* unused harmony export postsFetchDataSuccess */
@@ -37372,6 +37372,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__posts_post__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__index__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__index__);
 
 
 
@@ -37384,7 +37385,7 @@ var store = Object(__WEBPACK_IMPORTED_MODULE_3__posts_post__["a" /* default */])
 Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     __WEBPACK_IMPORTED_MODULE_2_react_redux__["a" /* Provider */],
     { store: store },
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__index__["a" /* default */], null)
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__index__["default"], null)
 ), document.getElementById('app'));
 
 /***/ }),
@@ -59098,7 +59099,7 @@ function createConnect() {
   };
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (createConnect());
+/* unused harmony default export */ var _unused_webpack_default_export = (createConnect());
 
 /***/ }),
 /* 64 */
@@ -59872,94 +59873,10 @@ function posts() {
 
 /***/ }),
 /* 86 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_posts_actions__ = __webpack_require__(24);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-var App = function (_Component) {
-    _inherits(App, _Component);
-
-    function App() {
-        _classCallCheck(this, App);
-
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-    }
-
-    _createClass(App, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.props.fetchData('http://127.0.0.1:8000/api/posts/');
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            if (this.props.hasError) {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'p',
-                    null,
-                    'Sorry! There was an error loading the posts'
-                );
-            }
-
-            if (this.props.isLoading) {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'p',
-                    null,
-                    'Loading Posts...'
-                );
-            }
-
-            var pos = 0;
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                null,
-                this.props.posts.map(function (post) {
-                    return console.log(post), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { key: post[pos].id },
-                        post[pos].title,
-                        pos++
-                    );
-                })
-            );
-        }
-    }]);
-
-    return App;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-var mapStateToProps = function mapStateToProps(state) {
-    return {
-        posts: state.posts,
-        hasError: state.postsHaveError,
-        isLoading: state.postsAreLoading
-    };
-};
-
-var mapsDispatchToProps = function mapsDispatchToProps(dispatch) {
-    return {
-        fetchData: function fetchData(url) {
-            return dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__components_posts_actions__["d" /* postsFetchData */])(url));
-        }
-    };
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapStateToProps, mapsDispatchToProps)(App));
+throw new Error("Module build failed: SyntaxError: Unexpected token (23:10)\n\n\u001b[0m \u001b[90m 21 | \u001b[39m    }\n \u001b[90m 22 | \u001b[39m    \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 | \u001b[39m    \u001b[36mconst\u001b[39m styleCard \u001b[33m=\u001b[39m {\n \u001b[90m    | \u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 | \u001b[39m\n \u001b[90m 25 | \u001b[39m    }\u001b[33m;\u001b[39m\n \u001b[90m 26 | \u001b[39m    render() {       \u001b[0m\n");
 
 /***/ }),
 /* 87 */
