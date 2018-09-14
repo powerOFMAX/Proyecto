@@ -5,8 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../../reducers/data';
 
-import Index from '../../scenes/Home/index';
-import AppPrincipal from './apprincipal';
+import Main  from './main';
+import NavBar from './navbar';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -22,10 +22,17 @@ function configureStore(initialState) {
 
 const store = configureStore();
 
+const App = () => (
+    <div>
+        <NavBar/>
+        <Main/>
+    </div>
+);
+
 render(
     <Provider store = {store}>
         <Router>
-            <AppPrincipal/>
+            <App/>
         </Router>
     </Provider>,
     document.getElementById('app') 

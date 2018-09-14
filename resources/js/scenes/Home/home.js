@@ -34,17 +34,18 @@ class Home extends Component {
             return <p>Sorry! There was an error loading the posts</p>;
         }
             return (
-                <div className = "body">
+                <div className = "container">
                 {this.props.posts.map(post => (
-                    <div className="card .mx-auto" key={post.id}>
+                    <div className="card col-lg mt-4" key={post.id}>
                         <div className="card-body">
-                            <h5 className="card-header">{post.title}
+                            <h5 className="card-header">
+                            {post.title}
                                 <Link to={'/edit/'+post.id}>
                                     <span className="badge" onClick={this.onClickEdit}>Edit</span>
                                 </Link>
-                                    <a><span className="badge" onClick={(id) => this.onClickDelete(post.id)}> Delete </span></a>
+                                    <span className="badge" onClick={(id) => this.onClickDelete(post.id)}> Delete </span>
                             </h5>
-                            <p className="card-text">{post.description}</p>
+                            <p className="card-text">{post.description.substring(0,100)}...</p>
                             <Link to= {'/post/'+post.id}>
                                 <button className="btn btn-primary" onClick={this.onClickSeeMore}>See more...</button>
                             </Link>
