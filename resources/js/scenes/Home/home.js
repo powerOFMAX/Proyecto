@@ -17,12 +17,16 @@ class Home extends Component {
         console.log('edito');
     }
     
-    onClickDelete(){
-        console.log('borro');
-    }
-    
-    onClickHome(e){
-        console.log('tamos en el home');
+    onClickDelete(id){
+        console.log(this.state);
+        
+        alert('Do you want to delete post '+id+' ?');
+        this.props.posts.filter(function (post){
+            return post.id.value !== id;
+        });
+        if(success){
+            console.log('asdasdasd');
+        }
     }
 
     render() {
@@ -31,24 +35,22 @@ class Home extends Component {
         }
             return (
                 <div className = "body">
-                    <div className="navbar" href="/" onClick={this.onClickHome}> Home </div>   
-
                 {this.props.posts.map(post => (
                     <div className="card .mx-auto" key={post.id}>
                         <div className="card-body">
                             <h5 className="card-header">{post.title}
-                                <Link to={'/edit/1'}>
+                                <Link to={'/edit/'+post.id}>
                                     <span className="badge" onClick={this.onClickEdit}>Edit</span>
                                 </Link>
-                                <Link to={'/delete/'}>
-                                    <span className="badge" onClick={this.onClickDelete}> Delete </span>
-                                </Link>
+                                    <a><span className="badge" onClick={(id) => this.onClickDelete(post.id)}> Delete </span></a>
                             </h5>
                             <p className="card-text">{post.description}</p>
-                            <button className="btn btn-primary" onClick={this.onClickSeeMore}>See more...</button>
+                            <Link to= {'/post/'+post.id}>
+                                <button className="btn btn-primary" onClick={this.onClickSeeMore}>See more...</button>
+                            </Link>
                         </div>
                     </div>
-                    ))}
+                ))}
                 </div>
             );
         }

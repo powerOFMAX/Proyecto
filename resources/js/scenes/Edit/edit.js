@@ -4,8 +4,9 @@ export default class Edit extends Component {
   render() {
     return (
       <div>
-        
+        Editando
+
       </div>
-    )
+    );
   }
 }
