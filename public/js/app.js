@@ -63323,39 +63323,43 @@ var Home = function (_Component) {
                         'div',
                         { className: 'card col-lg mt-4', key: post.id },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'h5',
-                            { className: 'card-header' },
-                            post.title,
+                            'div',
+                            { className: 'card-body' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
-                                { to: '/edit/' + post.id },
+                                'h5',
+                                { className: 'card-header' },
+                                post.title,
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
+                                    { to: '/edit/' + post.id },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'span',
+                                        { className: 'badge', onClick: _this2.onClickEdit },
+                                        'Edit'
+                                    )
+                                ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'span',
-                                    { className: 'badge', onClick: _this2.onClickEdit },
-                                    'Edit'
+                                    { className: 'badge', onClick: function onClick(id) {
+                                            return _this2.onClickDelete(post.id);
+                                        } },
+                                    ' Delete '
                                 )
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'span',
-                                { className: 'badge', onClick: function onClick(id) {
-                                        return _this2.onClickDelete(post.id);
-                                    } },
-                                ' Delete '
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            { className: 'card-text' },
-                            post.description.substring(0, 100),
-                            '...'
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
-                            { to: '/post/' + post.id },
+                                'p',
+                                { className: 'card-text' },
+                                post.description.substring(0, 100),
+                                '...'
+                            ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'button',
-                                { className: 'btn btn-primary', onClick: _this2.onClickSeeMore },
-                                'See more...'
+                                __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
+                                { to: '/post/' + post.id },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'button',
+                                    { className: 'btn btn-primary', onClick: _this2.onClickSeeMore },
+                                    'See more...'
+                                )
                             )
                         )
                     );
@@ -63525,7 +63529,10 @@ var See = function (_Component) {
     _createClass(See, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            console.log(this.props.match.params.id);
+            console.log(this.props);
+
+            this.props.fetchData('http://127.0.0.1:8000/api/posts/1');
+            console.log(this.props);
         }
     }, {
         key: 'render',
@@ -63544,11 +63551,11 @@ var See = function (_Component) {
                     null,
                     'Title'
                 ),
-                this.props.posts[this.props.match.params.id].title,
+                this.props.post.title,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'p',
                     null,
-                    this.props.posts[this.props.match.params.id].description
+                    this.props.post.description
                 )
             );
         }
@@ -63559,7 +63566,7 @@ var See = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        posts: state.posts,
+        posts: state.post,
         hasError: state.HaveError
     };
 };

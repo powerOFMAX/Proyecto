@@ -5,7 +5,10 @@ import { fetchData } from "../../actions/postsActions";
 
 class See extends Component {
     componentDidMount(){
-        console.log(this.props.match.params.id);
+        console.log(this.props);
+
+        this.props.fetchData('http://127.0.0.1:8000/api/posts/1');
+        console.log(this.props);
     }
 
     render() {
@@ -16,9 +19,9 @@ class See extends Component {
                
             </h4>
             <h5>Title</h5> 
-                {this.props.posts[this.props.match.params.id].title}
+                {this.props.posts.title}
             <p>
-                {this.props.posts[this.props.match.params.id].description}
+                {this.props.posts.description}
             </p>
         </div>
     );
@@ -28,7 +31,7 @@ class See extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.posts,
+        posts: state.post,
         hasError: state.HaveError
     };    
 };
