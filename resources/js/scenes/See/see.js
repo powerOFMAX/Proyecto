@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchData } from "../../actions/postsActions";
+import { fetchContent } from "../../actions/content";
 
 
 class See extends Component {
     componentDidMount(){
         console.log(this.props);
-
-        this.props.fetchData('http://127.0.0.1:8000/api/posts/1');
+        this.props.fetchContent(`/api/posts/${this.props.match.params.id}`);
         console.log(this.props);
     }
 
@@ -16,12 +15,11 @@ class See extends Component {
         <div>
             <h4>
                 Viendo post numero: {this.props.match.params.id}
-               
             </h4>
             <h5>Title</h5> 
-                {this.props.posts.title}
+                {this.props.content.title}
             <p>
-                {this.props.posts.description}
+                {this.props.content.description}
             </p>
         </div>
     );
@@ -31,14 +29,14 @@ class See extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.post,
-        hasError: state.HaveError
+        content: state.content,
+        contentError: state.contentError
     };    
 };
 
 const mapsDispatchToProps = (dispatch) => {
     return {
-        fetchData: (url) => dispatch(fetchData(url))
+        fetchContent: (url) => dispatch(fetchContent(url))
     };
 };
 

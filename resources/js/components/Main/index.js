@@ -7,10 +7,10 @@ import See from "../../scenes/See/see";
 
 const Main = () => (
         <Switch>
-            <Route exact path="/" component= {Home}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/edit" component = {Edit}/>
-            <Route path="/post/:id" component = {See}/>
+            <Route exact path = "/" component = {Home}/>
+            <Route path = "/login" component = {Login}/>
+            <Route path = "/edit" component = {Edit}/>
+            <Route path = "/post/:id" component = {See}/>
         </Switch>
 );
 

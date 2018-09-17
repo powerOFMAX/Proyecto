@@ -12,7 +12,7 @@ export default class Login extends Component {
           <h3>Password</h3>
           <input/>
       </div>
-          <button className="btn btn-success">Login in</button>
+          <button className = "btn btn-success"> Login in </button>
     </div>
     );
   }
