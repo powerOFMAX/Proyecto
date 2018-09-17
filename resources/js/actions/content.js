@@ -1,8 +1,8 @@
 import axios from 'axios'
  
-export const FETCH_CONTENT = 'FETCH_CONTENT';
-export const CONTENT_ERROR = 'CONTENT_ERROR';
-export const CONTENT_SUCCESS = 'CONTENT_SUCCESS';
+export const APP_ERROR = 'APP_ERROR';
+export const APP_SUCCESS = 'APP_SUCCESS';
+export const APP_FETCH = 'APP_FETCH';
 
 //export function showPosts() {
  //   return (dispatch, getState) => {
@@ -15,22 +15,28 @@ export const CONTENT_SUCCESS = 'CONTENT_SUCCESS';
 
 export function fetchContent(url) {
     return (dispatch) => {
+        dispatch(appFetch())
         axios.get(url)
-            .then((response) => dispatch(contentSuccess(response.data)))
-            .catch(() => dispatch(contentError()));
+            .then((response) => dispatch(appSuccess(response.data)))
+            .catch((e) => console.log(e));
     };
 }
 
-export function contentError() {
+function appError() {
     return {
-        type: CONTENT_ERROR,
-        contentERROR: TRUE
+        type: APP_ERROR
     };
 }
 
-export function contentSuccess(content) {
+function appSuccess(content) {
     return {
-        type: FETCH_CONTENT,
+        type: APP_SUCCESS,
         content
+    };
+}
+
+function appFetch() {
+    return {
+        type: APP_FETCH
     };
 }

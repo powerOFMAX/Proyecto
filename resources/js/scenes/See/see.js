@@ -5,7 +5,6 @@ import { fetchContent } from "../../actions/content";
 
 class See extends Component {
     componentDidMount(){
-        console.log(this.props);
         this.props.fetchContent(`/api/posts/${this.props.match.params.id}`);
         console.log(this.props);
     }
@@ -29,10 +28,9 @@ class See extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        content: state.content,
-        contentError: state.contentError
-    };    
+        content: state.app.content
 };
+}
 
 const mapsDispatchToProps = (dispatch) => {
     return {

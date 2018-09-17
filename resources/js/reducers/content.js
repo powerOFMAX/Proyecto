@@ -1,19 +1,41 @@
-import { combineReducers } from 'redux';
-import { CONTENT_ERROR, FETCH_CONTENT } from '../actions/content';
+import { APP_ERROR, APP_FETCH, APP_SUCCESS } from '../actions/content';
 
-export function content(state = [], action) {
+export  function app(state = {
+            content: [],
+            content_error: false,
+            content_success: false, 
+            content_fetch: false
+                                }, action) {
     switch (action.type) {
-        case FETCH_CONTENT:
-            return action.content;
-        
-        case CONTENT_ERROR:
-            return action.contentError;
-        
+        case APP_FETCH:
+            return {
+                ...state,
+                content: [],
+                content_error: false,
+                content_success: false,
+                content_fetch: true,
+               
+            }
+
+        case APP_SUCCESS:
+        return {
+            ...state,
+            content: action.content,
+            content_error: false,
+            content_success: true,
+            content_fetch: false,
+        }
+
+        case APP_ERROR:
+            return {
+                ...state,
+                content_error: true,
+                content_success: true,
+                content_fetch: false,
+            }
+
         default:
+            console.log('asdasd')
             return state;
     }
 }
-
-export default combineReducers({
-    content
-});

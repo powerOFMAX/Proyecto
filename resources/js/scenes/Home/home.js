@@ -28,9 +28,10 @@ class Home extends Component {
     }
 
     render() {
-        if (this.props.contentError) {
+        if (this.props.content_error) {
             return <p>Sorry! There was an error loading the posts</p>;
         }
+        console.log(this.props)
             return (
                 <div className = "container">
                 {this.props.content.map(post => (
@@ -55,16 +56,13 @@ class Home extends Component {
         }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        content: state.content,
-        contentError: state.contentError
-    };    
-};
+const mapStateToProps = state => ({
+    content: state.app.content
+});
 
-const mapsDispatchToProps = (dispatch) => {
+const mapsDispatchToProps = dispatch => {
     return {
-        fetchContent: (url) => dispatch(fetchContent(url))
+        fetchContent: url => dispatch(fetchContent(url))
     };
 };
 

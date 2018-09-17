@@ -1,29 +1,29 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from '../../reducers/content';
+import rootReducers from '../../rootReducers';
+
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import Main  from '../Main';
 import NavBar from '../Nav';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
-function configureStore(initialState) {
+//instalando el redux-devtools-extension
+const enhancer = composeWithDevTools(
+    applyMiddleware(thunk)
+);
 
+function configureStore(initialState = {}) {
     return createStore(
-        rootReducer,
+        rootReducers,
         initialState,
-        allStoreEnhancers
+        enhancer
     );
 }
-
-//No se porque poniendolo directamente no funciona
-const allStoreEnhancers = compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
 
 const store = configureStore();
 
