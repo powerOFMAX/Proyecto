@@ -63268,71 +63268,7 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/App/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__("./node_modules/react-dom/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_redux__ = __webpack_require__("./node_modules/redux/es/redux.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_redux_thunk__ = __webpack_require__("./node_modules/redux-thunk/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rootReducers__ = __webpack_require__("./resources/js/rootReducers.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension__ = __webpack_require__("./node_modules/redux-devtools-extension/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Main__ = __webpack_require__("./resources/js/components/Main/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Nav__ = __webpack_require__("./resources/js/components/Nav/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//instalando el redux-devtools-extension
-var enhancer = Object(__WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension__["composeWithDevTools"])(Object(__WEBPACK_IMPORTED_MODULE_3_redux__["applyMiddleware"])(__WEBPACK_IMPORTED_MODULE_4_redux_thunk__["a" /* default */]));
-
-function configureStore() {
-    var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    return Object(__WEBPACK_IMPORTED_MODULE_3_redux__["createStore"])(__WEBPACK_IMPORTED_MODULE_5__rootReducers__["a" /* default */], initialState, enhancer);
-}
-
-var store = configureStore();
-
-var App = function App() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Nav__["a" /* default */], null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Main__["a" /* default */], null)
-    );
-};
-
-Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-    __WEBPACK_IMPORTED_MODULE_2_react_redux__["a" /* Provider */],
-    { store: store },
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_9_react_router_dom__["a" /* BrowserRouter */],
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App, null)
-    )
-), document.getElementById('app'));
-
-/***/ }),
-
-/***/ "./resources/js/components/Main/index.js":
+/***/ "./resources/js/components/App/components/Main/index.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63365,7 +63301,7 @@ var Main = function Main() {
 
 /***/ }),
 
-/***/ "./resources/js/components/Nav/index.js":
+/***/ "./resources/js/components/App/components/Nav/index.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63392,6 +63328,70 @@ var NavBar = function NavBar() {
         );
 };
 /* harmony default export */ __webpack_exports__["a"] = (NavBar);
+
+/***/ }),
+
+/***/ "./resources/js/components/App/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__("./node_modules/react-dom/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_redux__ = __webpack_require__("./node_modules/redux/es/redux.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_redux_thunk__ = __webpack_require__("./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rootReducers__ = __webpack_require__("./resources/js/rootReducers.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension__ = __webpack_require__("./node_modules/redux-devtools-extension/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__App_components_Main__ = __webpack_require__("./resources/js/components/App/components/Main/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__App_components_Nav__ = __webpack_require__("./resources/js/components/App/components/Nav/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//instalando el redux-devtools-extension
+var enhancer = Object(__WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension__["composeWithDevTools"])(Object(__WEBPACK_IMPORTED_MODULE_3_redux__["applyMiddleware"])(__WEBPACK_IMPORTED_MODULE_4_redux_thunk__["a" /* default */]));
+
+function configureStore() {
+    var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    return Object(__WEBPACK_IMPORTED_MODULE_3_redux__["createStore"])(__WEBPACK_IMPORTED_MODULE_5__rootReducers__["a" /* default */], initialState, enhancer);
+}
+
+var store = configureStore();
+
+var App = function App() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__App_components_Nav__["a" /* default */], null),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__App_components_Main__["a" /* default */], null)
+    );
+};
+
+Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    __WEBPACK_IMPORTED_MODULE_2_react_redux__["a" /* Provider */],
+    { store: store },
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_9_react_router_dom__["a" /* BrowserRouter */],
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App, null)
+    )
+), document.getElementById('app'));
 
 /***/ }),
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
-import Home from "../../scenes/Home/home";
-import Login from "../../scenes/Login/login";
-import Edit from "../../scenes/Edit/edit";
-import See from "../../scenes/See/see";
+import Home from "../../../../scenes/Home/home";
+import Login from "../../../../scenes/Login/login";
+import Edit from "../../../../scenes/Edit/edit";
+import See from "../../../../scenes/See/see";
 
 const Main = () => (
         <Switch>

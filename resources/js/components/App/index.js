@@ -7,8 +7,8 @@ import rootReducers from '../../rootReducers';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import Main  from '../Main';
-import NavBar from '../Nav';
+import Main  from '../App/components/Main';
+import NavBar from '../App/components/Nav';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
