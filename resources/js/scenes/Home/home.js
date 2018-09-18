@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { fetchContent } from "../../actions/content";
+import { fetchContent } from "../../actions/app";
 
 
 class Home extends Component {
@@ -31,7 +31,6 @@ class Home extends Component {
         if (this.props.content_error) {
             return <p>Sorry! There was an error loading the posts</p>;
         }
-        console.log(this.props)
             return (
                 <div className = "container">
                 {this.props.content.map(post => (

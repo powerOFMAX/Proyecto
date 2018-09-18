@@ -63128,7 +63128,7 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/actions/content.js":
+/***/ "./resources/js/actions/app.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63151,15 +63151,15 @@ var APP_FETCH = 'APP_FETCH';
 //             dispatch( { type: SHOW_POSTS, payload: response.data } ) 
 //          }) 
 //  };
-//}
+//} 
 
 function fetchContent(url) {
     return function (dispatch) {
         dispatch(appFetch());
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(url).then(function (response) {
             return dispatch(appSuccess(response.data));
-        }).catch(function (e) {
-            return console.log(e);
+        }).catch(function () {
+            return dispatch(appError());
         });
     };
 }
@@ -63395,12 +63395,12 @@ var NavBar = function NavBar() {
 
 /***/ }),
 
-/***/ "./resources/js/reducers/content.js":
+/***/ "./resources/js/reducers/app.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = app;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_content__ = __webpack_require__("./resources/js/actions/content.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_app__ = __webpack_require__("./resources/js/actions/app.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -63415,7 +63415,7 @@ function app() {
     var action = arguments[1];
 
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_0__actions_content__["b" /* APP_FETCH */]:
+        case __WEBPACK_IMPORTED_MODULE_0__actions_app__["b" /* APP_FETCH */]:
             return _extends({}, state, {
                 content: [],
                 content_error: false,
@@ -63424,7 +63424,7 @@ function app() {
 
             });
 
-        case __WEBPACK_IMPORTED_MODULE_0__actions_content__["c" /* APP_SUCCESS */]:
+        case __WEBPACK_IMPORTED_MODULE_0__actions_app__["c" /* APP_SUCCESS */]:
             return _extends({}, state, {
                 content: action.content,
                 content_error: false,
@@ -63432,7 +63432,7 @@ function app() {
                 content_fetch: false
             });
 
-        case __WEBPACK_IMPORTED_MODULE_0__actions_content__["a" /* APP_ERROR */]:
+        case __WEBPACK_IMPORTED_MODULE_0__actions_app__["a" /* APP_ERROR */]:
             return _extends({}, state, {
                 content_error: true,
                 content_success: true,
@@ -63440,7 +63440,6 @@ function app() {
             });
 
         default:
-            console.log('asdasd');
             return state;
     }
 }
@@ -63452,12 +63451,12 @@ function app() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__("./node_modules/redux/es/redux.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reducers_content__ = __webpack_require__("./resources/js/reducers/content.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reducers_app__ = __webpack_require__("./resources/js/reducers/app.js");
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0_redux__["combineReducers"])({
-    app: __WEBPACK_IMPORTED_MODULE_1__reducers_content__["a" /* app */]
+    app: __WEBPACK_IMPORTED_MODULE_1__reducers_app__["a" /* app */]
 }));
 
 /***/ }),
@@ -63469,7 +63468,7 @@ function app() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_content__ = __webpack_require__("./resources/js/actions/content.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_app__ = __webpack_require__("./resources/js/actions/app.js");
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63541,7 +63540,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapsDispatchToProps = function mapsDispatchToProps(dispatch) {
     return {
         fetchContent: function fetchContent(url) {
-            return dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_content__["d" /* fetchContent */])(url));
+            return dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_app__["d" /* fetchContent */])(url));
         }
     };
 };
@@ -63558,7 +63557,7 @@ var mapsDispatchToProps = function mapsDispatchToProps(dispatch) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_content__ = __webpack_require__("./resources/js/actions/content.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_app__ = __webpack_require__("./resources/js/actions/app.js");
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63618,7 +63617,6 @@ var Home = function (_Component) {
                     'Sorry! There was an error loading the posts'
                 );
             }
-            console.log(this.props);
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'container' },
@@ -63684,7 +63682,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapsDispatchToProps = function mapsDispatchToProps(dispatch) {
     return {
         fetchContent: function fetchContent(url) {
-            return dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_content__["d" /* fetchContent */])(url));
+            return dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_app__["d" /* fetchContent */])(url));
         }
     };
 };
@@ -63767,7 +63765,7 @@ var Login = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_content__ = __webpack_require__("./resources/js/actions/content.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_app__ = __webpack_require__("./resources/js/actions/app.js");
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63793,7 +63791,6 @@ var See = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.props.fetchContent('/api/posts/' + this.props.match.params.id);
-            console.log(this.props);
         }
     }, {
         key: 'render',
@@ -63834,7 +63831,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapsDispatchToProps = function mapsDispatchToProps(dispatch) {
     return {
         fetchContent: function fetchContent(url) {
-            return dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_content__["d" /* fetchContent */])(url));
+            return dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_app__["d" /* fetchContent */])(url));
         }
     };
 };

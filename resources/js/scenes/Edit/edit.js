@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { fetchContent } from '../../actions/content';
+import { fetchContent } from '../../actions/app';
 
 class Edit extends Component {
   componentDidMount(){

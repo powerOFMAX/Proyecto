@@ -11,14 +11,14 @@ export const APP_FETCH = 'APP_FETCH';
    //             dispatch( { type: SHOW_POSTS, payload: response.data } ) 
   //          }) 
   //  };
-//}
+//} 
 
 export function fetchContent(url) {
     return (dispatch) => {
         dispatch(appFetch())
         axios.get(url)
             .then((response) => dispatch(appSuccess(response.data)))
-            .catch((e) => console.log(e));
+            .catch(() => dispatch(appError()));
     };
 }
 

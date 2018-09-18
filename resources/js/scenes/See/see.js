@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchContent } from "../../actions/content";
+import { fetchContent } from "../../actions/app";
 
 
 class See extends Component {
     componentDidMount(){
         this.props.fetchContent(`/api/posts/${this.props.match.params.id}`);
-        console.log(this.props);
     }
 
     render() {

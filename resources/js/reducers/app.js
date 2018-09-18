@@ -1,4 +1,4 @@
-import { APP_ERROR, APP_FETCH, APP_SUCCESS } from '../actions/content';
+import { APP_ERROR, APP_FETCH, APP_SUCCESS } from '../actions/app';
 
 export  function app(state = {
             content: [],
@@ -35,7 +35,6 @@ export  function app(state = {
             }
 
         default:
-            console.log('asdasd')
             return state;
     }
 }
