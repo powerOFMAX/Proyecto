@@ -16,15 +16,21 @@ class See extends Component {
             return <p>Sorry! There was an error loading a post</p>;
         }
         return (
-            <div>
-                <h4>
-                    Viendo post numero: {this.props.match.params.id}
-                </h4>
-                <h5>Title</h5> 
+            <div className="container">
+                <h4>Viendo post numero: {this.props.match.params.id}</h4>
+                <div className= "row">
+                    <h5> Title: 
                     {this.props.content.title}
-                <p>
-                    {this.props.content.description}
-                </p>
+                    </h5> 
+                </div>
+                <div className="row">
+                    <h5>
+                        Description:    
+                    </h5>
+                    <p>
+                        {this.props.content.description}
+                    </p>
+                </div>
             </div>
         );
   }

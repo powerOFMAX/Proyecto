@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { fetchContent } from "../../actions/app";
+import axios from 'axios';
 
 
 class Home extends Component {
@@ -22,9 +23,11 @@ class Home extends Component {
         let success = confirm(`Do you want to delete post ${id} ?`);
 
         if(success){
-            
-        }
+        
 
+            axios.delete(`/api/posts/${id}`);
+            console.log('borrado correcto');
+        }
     }
 
     render() {
@@ -43,7 +46,6 @@ class Home extends Component {
                     <div className = "card-header">
                         <div className="col-lg">
                             <h5> {post.title} </h5>
-                    
                         </div>
 
                         <div className="col-lg">
