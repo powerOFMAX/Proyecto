@@ -63268,6 +63268,81 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/components/App/components/Footer/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+var Footer = function Footer() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "footer",
+            { className: "text-center footer-style mt-4" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "container" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "row" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "col-md-4 footer-col" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "h5",
+                            null,
+                            "About"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "p",
+                            null,
+                            "This is a new blog made as example"
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "col-md-4 footer-col" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "a",
+                            null,
+                            "  MyBlog 2018 \xA9"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "a",
+                            { href: "http://www.github.com/powerOFMAX" },
+                            " Github "
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "col-md-4 footer-col" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "h5",
+                            null,
+                            "Contanct"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "p",
+                            null,
+                            "CABA - Argentina ",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", null),
+                            "Calle Falsa 400"
+                        )
+                    )
+                )
+            )
+        )
+    );
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Footer);
+
+/***/ }),
+
 /***/ "./resources/js/components/App/components/Main/index.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63293,7 +63368,7 @@ var Main = function Main() {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { exact: true, path: "/", component: __WEBPACK_IMPORTED_MODULE_2__scenes_Home_home__["a" /* default */] }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/login", component: __WEBPACK_IMPORTED_MODULE_3__scenes_Login_login__["a" /* default */] }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/edit", component: __WEBPACK_IMPORTED_MODULE_4__scenes_Edit_edit__["a" /* default */] }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/post/:id", component: __WEBPACK_IMPORTED_MODULE_5__scenes_See_see__["a" /* default */] })
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/posts/:id", component: __WEBPACK_IMPORTED_MODULE_5__scenes_See_see__["a" /* default */] })
     );
 };
 
@@ -63348,7 +63423,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_redux_devtools_extension__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__App_components_Main__ = __webpack_require__("./resources/js/components/App/components/Main/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__App_components_Nav__ = __webpack_require__("./resources/js/components/App/components/Nav/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__App_components_Footer__ = __webpack_require__("./resources/js/components/App/components/Footer/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
 
 
 
@@ -63379,7 +63455,8 @@ var App = function App() {
         'div',
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__App_components_Nav__["a" /* default */], null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__App_components_Main__["a" /* default */], null)
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__App_components_Main__["a" /* default */], null),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__App_components_Footer__["a" /* default */], null)
     );
 };
 
@@ -63387,7 +63464,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MOD
     __WEBPACK_IMPORTED_MODULE_2_react_redux__["a" /* Provider */],
     { store: store },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_9_react_router_dom__["a" /* BrowserRouter */],
+        __WEBPACK_IMPORTED_MODULE_10_react_router_dom__["a" /* BrowserRouter */],
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App, null)
     )
@@ -63587,28 +63664,30 @@ var Home = function (_Component) {
         }
     }, {
         key: 'onClickSeeMore',
-        value: function onClickSeeMore() {
-            console.log('veo mas');
-        }
+        value: function onClickSeeMore() {}
     }, {
         key: 'onClickEdit',
-        value: function onClickEdit() {
-            console.log('edito');
-        }
+        value: function onClickEdit() {}
     }, {
         key: 'onClickDelete',
         value: function onClickDelete(id) {
             console.log(this.props);
             var success = confirm('Do you want to delete post ' + id + ' ?');
 
-            if (success) {
-                console.log('asdasdasd');
-            }
+            if (success) {}
         }
     }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
+
+            if (this.props.content_fech) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'h1',
+                    null,
+                    ' Loading Posts!! '
+                );
+            }
 
             if (this.props.content_error) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -63623,14 +63702,24 @@ var Home = function (_Component) {
                 this.props.content.map(function (post) {
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'card col-lg mt-4', key: post.id },
+                        { className: 'card row mt-4 ', key: post.id },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
-                            { className: 'card-body' },
+                            { className: 'card-header' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'h5',
-                                { className: 'card-header' },
-                                post.title,
+                                'div',
+                                { className: 'col-lg' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'h5',
+                                    null,
+                                    ' ',
+                                    post.title,
+                                    ' '
+                                )
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'col-lg' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
                                     { to: '/edit/' + post.id },
@@ -63647,7 +63736,11 @@ var Home = function (_Component) {
                                         } },
                                     ' Delete '
                                 )
-                            ),
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'card-body' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'p',
                                 { className: 'card-text' },
@@ -63656,7 +63749,7 @@ var Home = function (_Component) {
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
-                                { to: '/post/' + post.id },
+                                { to: '/posts/' + post.id },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'button',
                                     { className: 'btn btn-primary', onClick: _this2.onClickSeeMore },
@@ -63675,7 +63768,9 @@ var Home = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        content: state.app.content
+        content: state.app.content,
+        content_error: state.app.content_error,
+        content_fech: state.app.content_fetch
     };
 };
 
@@ -63795,6 +63890,20 @@ var See = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            if (this.props.content_fech) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'h1',
+                    null,
+                    ' Loading Post!! '
+                );
+            }
+            if (this.props.content_error) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'p',
+                    null,
+                    'Sorry! There was an error loading a post'
+                );
+            }
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 null,
@@ -63824,7 +63933,9 @@ var See = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        content: state.app.content
+        content: state.app.content,
+        content_error: state.app.content_error,
+        content_fetch: state.app.content_fetch
     };
 };
 

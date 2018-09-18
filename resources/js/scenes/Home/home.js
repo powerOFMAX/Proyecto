@@ -6,15 +6,15 @@ import { fetchContent } from "../../actions/app";
 
 class Home extends Component {
     componentDidMount(){
-        this.props.fetchContent('/api/posts/');
+        this.props.fetchContent(`/api/posts/`);
     }
     
     onClickSeeMore(){
-        console.log('veo mas');
+        
     }
     
     onClickEdit(){
-        console.log('edito');
+        
     }
     
     onClickDelete(id){
@@ -22,41 +22,56 @@ class Home extends Component {
         let success = confirm(`Do you want to delete post ${id} ?`);
 
         if(success){
-            console.log('asdasdasd');
+            
         }
 
     }
 
     render() {
+        if (this.props.content_fech){
+            return <h1> Loading Posts!! </h1>
+        }
+
         if (this.props.content_error) {
             return <p>Sorry! There was an error loading the posts</p>;
         }
-            return (
-                <div className = "container">
-                {this.props.content.map(post => (
-                    <div className = "card col-lg mt-4" key={post.id}>
-                        <div className = "card-body">
-                            <h5 className = "card-header">
-                            {post.title}
-                                <Link to = {'/edit/'+post.id}>
-                                    <span className = "badge" onClick = {this.onClickEdit}> Edit </span>
-                                </Link>
-                                    <span className = "badge" onClick = {(id) => this.onClickDelete(post.id)}> Delete </span>
-                            </h5>
-                            <p className = "card-text">{post.description.substring(0,100)}...</p>
-                            <Link to = {'/post/'+post.id}>
-                                <button className = "btn btn-primary" onClick = {this.onClickSeeMore}> See more... </button>
-                            </Link>
+        return (
+            <div className = "container">
+            {this.props.content.map(post => (
+                <div className = "card row mt-4 " key={post.id}>
+
+                    <div className = "card-header">
+                        <div className="col-lg">
+                            <h5> {post.title} </h5>
+                    
                         </div>
+
+                        <div className="col-lg">
+                            <Link to = {`/edit/${post.id}`}>
+                                <span className = "badge" onClick = {this.onClickEdit}> Edit </span>
+                            </Link>
+                                <span className = "badge" onClick = {(id) => this.onClickDelete(post.id)}> Delete </span>
+                        </div>
+
                     </div>
-                ))}
+
+                    <div className = "card-body">
+                        <p className = "card-text">{post.description.substring(0,100)}...</p>
+                        <Link to = {`/posts/${post.id}`}>
+                            <button className = "btn btn-primary" onClick = {this.onClickSeeMore}> See more... </button>
+                        </Link>
+                    </div>
                 </div>
-            );
+            ))}
+            </div>
+        );
         }
 }
 
 const mapStateToProps = state => ({
-    content: state.app.content
+    content: state.app.content,
+    content_error: state.app.content_error,
+    content_fech: state.app.content_fetch
 });
 
 const mapsDispatchToProps = dispatch => {
