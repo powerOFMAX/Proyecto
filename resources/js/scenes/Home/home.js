@@ -19,14 +19,14 @@ class Home extends Component {
     }
     
     onClickDelete(id){
-        console.log(this.props);
         let success = confirm(`Do you want to delete post ${id} ?`);
 
         if(success){
-        
-
+            const ejemplo = this.props.content.filter(post => {
+                return post.id !== id;
+            });
             axios.delete(`/api/posts/${id}`);
-            console.log('borrado correcto');
+            console.log(ejemplo);
         }
     }
 
