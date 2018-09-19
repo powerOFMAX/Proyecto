@@ -22,6 +22,7 @@ export function fetchContent(url) {
     };
 }
 
+
 function appError() {
     return {
         type: APP_ERROR
