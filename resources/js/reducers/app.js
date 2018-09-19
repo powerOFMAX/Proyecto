@@ -30,11 +30,9 @@ export  function app(state = {
             return {
                 ...state,
                 content_error: true,
-                content_success: true,
+                content_success: false,
                 content_fetch: false,
             }
-                // content: state.content.filter(post => post.id !== action.content.id ),
-
 
         default:
             return state;

@@ -7,12 +7,13 @@ import { login } from '../../actions/login';
 class Login extends Component {
   constructor(props){
     super(props);
+
     this.state = {
+      user: [],
       email: '',
       password: '',
       isLoading:false,
-      rol: 'public',
-      logged: false
+      logged: false,
     }
   }
 
@@ -39,11 +40,21 @@ class Login extends Component {
   }
 
   componentDidUpdate(prevProps,prevState){
+    if(this.props.user.length !== prevProps.user.length){
+      this.setUser();
+    }
+  }
 
+  setUser(){
+    this.setState({
+      user: this.props.user,
+      isLoading: false,
+      logged: true,
+    });
   }
 
   render() {
-    return (   
+    return (
     <div className="container">
       <div className="card">
         <div className="card-body row text-center">
@@ -70,10 +81,10 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => ({
-  rol: state.app.rol,
-  email: state.app.email,
-  password: state.app.password,
-  logged: state.app.status
+  user: state.login.user,
+  userError: state.login.user_error,
+  userLoad: state.login.user_load,
+  userSuccess:  state.login.user_success,
 });
 
 const mapsDispatchToProps = dispatch => {

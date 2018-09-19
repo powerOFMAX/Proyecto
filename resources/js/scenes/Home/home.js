@@ -48,16 +48,23 @@ class Home extends Component {
     }
 
     render() {
+        
         if (this.props.contentFech){
             return <h1> Loading Posts!! </h1>
         }
-
+        
         if (this.props.contentError) {
             return <p>Sorry! There was an error loading the posts</p>;
         }
-       
+
+       // if(this.props.userSuccess){
+       //     return <h1> Hola {this.props.user.name} </h1>
+       // }
+
         return (
             <div className = "container">
+            <h3> Hola {this.props.user.name}! </h3>
+
             {this.state.posts.map(post => (
                 <div className = "card row mt-4 " key={post.id}>
 
@@ -89,6 +96,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
+    user: state.login.user,
+    userSuccess: state.login.user_success,
     content: state.app.content,
     contentError: state.app.content_error,
     contentFech: state.app.content_fetch
