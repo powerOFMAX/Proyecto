@@ -34,7 +34,7 @@ class Login extends Component {
         isLoading: true      
       });
      //login
-      this.props.login(`/api/login/`,this.state);
+      this.props.login(`/api/login`,this.state);
     }
   }
 

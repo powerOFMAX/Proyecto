@@ -32,7 +32,7 @@ class UserController extends Controller
 
             $validateData = \Validator::make($request->all(),[
                 'email' => 'required',
-                'password' => 'required | max:2', 
+                'password' => 'required | max:255', 
             ]);
 
             if($validateData->fails()){
