@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { fetchContent, deleteContent } from "../../actions/app";
+import { fetchContent } from "../../actions/app";
 import axios from 'axios';
-
 
 class Home extends Component {
     constructor(props){
@@ -16,9 +15,8 @@ class Home extends Component {
 
     componentDidMount(){
         this.props.fetchContent(`/api/posts/`);
-
-
     }
+
     componentDidUpdate(prevProps,prevState){
         if(this.props.content.length !== prevProps.content.length){
             this.setPost();
@@ -29,13 +27,6 @@ class Home extends Component {
         this.setState({
             posts: this.props.content
         })
-    }
-    onClickSeeMore(){
-        
-    }
-    
-    onClickEdit(){
-        
     }
     
     handleDelete(id){
@@ -94,7 +85,7 @@ class Home extends Component {
             ))}
             </div>
         );
-        }
+    }
 }
 
 const mapStateToProps = state => ({
@@ -108,6 +99,5 @@ const mapsDispatchToProps = dispatch => {
         fetchContent: url => dispatch(fetchContent(url))
     };
 };
-
 
 export default connect(mapStateToProps, mapsDispatchToProps) (Home);

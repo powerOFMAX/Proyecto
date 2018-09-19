@@ -2,60 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show($email, $password)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function login(Request $request)
+    {
+        try
+        {
+            $email = $request->email;
+            $password= $request->password;
+
+            $validateData = \Validator::make($request->all(),[
+                'email' => 'required',
+                'password' => 'required | max:2', 
+            ]);
+
+            if($validateData->fails()){
+                $errors = $validateData->errors();
+                return response()->json([ 'message' => $errors->first()], 400);
+            }
+
+            $user = User::
+                where([
+                    'email' => $email,
+                    'password' => $password
+                ])->first();
+                return response()->json($user);            
+        }
+        catch(\Exception $e)
+        {
+            \Log::error('Error in UserController - show Method '.$e);
+            return response()->json(null, 500);
+        }
+    }
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
