@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { login } from '../../actions/login';
-
 
 class Login extends Component {
   constructor(props){
@@ -36,7 +34,15 @@ class Login extends Component {
       });
      //login
       this.props.login(`/api/login`,this.state);
+      this.ejemplo();
     }
+  }
+
+  ejemplo() {
+    setTimeout(() => {
+      alert('Login success')
+      this.props.history.push('/')
+    }, 1000);
   }
 
   componentDidUpdate(prevProps,prevState){
@@ -56,23 +62,23 @@ class Login extends Component {
   render() {
     return (
     <div className="container">
-      <div className="card">
-        <div className="card-body row text-center">
-            <div className="col-md-offset-5 col-md-3">
-              <h3>Login</h3>
-                <div className="form-group">
-                    <h5>Email</h5>
-                    <input type= "email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleEmail(e.target.value)} required/>
-                </div>
-
-                <div className="form-group">  
-                  <h5>Password</h5>
-                  <input type="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handlePassword(e.target.value)}  required/>
-                </div>
-
-                <div className="form-group">
-                    <button className = "btn btn-success" disable={this.state.isLoading.toString()} onClick = {() => this.handleSubmit()}> Login in </button>
-                </div>
+      <div className="card loginContent">
+        <div className="card-body">
+            <div className="col-lg ">
+              <div>
+                <h3>Login</h3>
+              </div>
+              <div className="form-group loginContent">
+                  <h5>Email</h5>
+                  <input type= "email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleEmail(e.target.value)} required/>
+              </div>
+              <div className="form-group loginContent">  
+                <h5>Password</h5>
+                <input type="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handlePassword(e.target.value)}  required/>
+              </div>
+              <div className="form-group loginContent">
+                  <button className = "btn btn-success" disable={this.state.isLoading.toString()} onClick = {() => this.handleSubmit()}> Login in </button>
+              </div>
             </div>
         </div>
       </div>
@@ -92,4 +98,5 @@ const mapsDispatchToProps = dispatch => {
       login: (url,data) => dispatch(login(url,data))
   };
 };
+
 export default connect (mapStateToProps, mapsDispatchToProps,) (Login);
