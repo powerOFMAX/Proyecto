@@ -29,23 +29,24 @@ class Home extends Component {
         })
     }
     
-    handleDelete(id){
+    async handleDelete(id){
         let success = confirm(`Do you want to delete post ${id} ?`);
 
         if(success){
-            axios.delete(`/api/posts/${id}`)
+            await axios.delete(`/api/posts/${id}`)
                 .catch((error) => {
                     if(error.response){
                         console.log(error.response.data);
                     }
-                });                
-            this.setState({
+                });
+            await this.setState({
                 posts: this.props.content.filter(post => {
                     return post.id !== id;
                 })
             });
         }
     }
+    
 
     render() {
         
