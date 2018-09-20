@@ -49,7 +49,7 @@ class Home extends Component {
 
     render() {
         
-        if (this.props.contentFech){
+        if (this.props.contentFetch){
             return <h1> Loading Posts!! </h1>
         }
         
@@ -107,7 +107,7 @@ const mapStateToProps = state => ({
     userSuccess: state.login.user_success,
     content: state.app.content,
     contentError: state.app.content_error,
-    contentFech: state.app.content_fetch
+    contentFetch: state.app.content_fetch
 });
 
 const mapsDispatchToProps = dispatch => {

@@ -9,10 +9,10 @@ class See extends Component {
     }
 
     render() {
-        if (this.props.content_fech){
+        if (this.props.contentFetch){
             return <h1> Loading Post!! </h1>
         }
-        if (this.props.content_error) {
+        if (this.props.contentError) {
             return <p>Sorry! There was an error loading a post</p>;
         }
         return (
@@ -40,8 +40,8 @@ class See extends Component {
 const mapStateToProps = (state) => {
     return {
         content: state.app.content,
-        content_error: state.app.content_error,
-        content_fetch: state.app.content_fetch
+        contentError: state.app.content_error,
+        contentFetch: state.app.content_fetch
     };
 }
 

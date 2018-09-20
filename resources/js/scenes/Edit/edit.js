@@ -19,7 +19,7 @@ class Edit extends Component {
   }
 
   render() {
-    if (this.props.content_fech){
+    if (this.props.content_fetch){
         return <h1> Loading Post!! </h1>
     }
 
@@ -53,7 +53,7 @@ const mapStateToProps = (state) => {
     return {
         content: state.app.content,
         content_error: state.app.content_error,
-        content_fech: state.app.content_fetch
+        content_fetch: state.app.content_fetch
     };
 };
 
