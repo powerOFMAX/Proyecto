@@ -5,6 +5,8 @@ import Login from "../../../../scenes/Login/login";
 import Edit from "../../../../scenes/Edit/edit";
 import See from "../../../../scenes/See/see";
 import New from "../../../../scenes/New/new";
+import Autorization from "../Autorization/";
+
 
 const Main = () => (
         <Switch>
@@ -12,7 +14,7 @@ const Main = () => (
             <Route path = "/login" component = {Login}/>
             <Route path = "/edit/:id" component = {Edit}/>
             <Route path = "/posts/:id" component = {See}/>
-            <Route path = "/new" component = {New}/>
+            <Route path = "/new" component ={ Autorization}/>
         </Switch>
 );
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { BrowserRouter as Route, Link } from 'react-router-dom';
 import { fetchContent } from "../../actions/app";
 import axios from 'axios';
 
