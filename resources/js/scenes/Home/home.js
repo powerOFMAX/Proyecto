@@ -30,20 +30,19 @@ class Home extends Component {
     }
     
     async handleDelete(id){
-        let success = confirm(`Do you want to delete post ${id} ?`);
-
-        if(success){
-            await axios.delete(`/api/posts/${id}`)
-                .catch((error) => {
-                    if(error.response){
-                        console.log(error.response.data);
-                    }
+        if(!confirm(`Do you want to delete post ${id} ?`)) return false;
+        try{
+            await axios.delete(`/api/posts/${id}`);
+                await this.setState({
+                    posts: this.props.content.filter(post => {
+                        return post.id !== id;
+                    })
                 });
-            await this.setState({
-                posts: this.props.content.filter(post => {
-                    return post.id !== id;
-                })
-            });
+            }catch(e){
+                if(e.response){
+                    console.error('Error on delete Response: '+ e.response.data);
+                }
+            console.error('Error on delete: '+ e.response);
         }
     }
     

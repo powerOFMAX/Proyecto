@@ -12,6 +12,7 @@ class Login extends Component {
       password: '',
       isLoading:false,
       logged: false,
+      invalidKeys: false
     }
   }
 
@@ -27,25 +28,40 @@ class Login extends Component {
     });
   }
 
-  handleSubmit(e){
+  async handleSubmit(e){
     if((this.state.email.length > 0) && (this.state.password.length > 0)){
       this.setState({
         isLoading: true      
       });
-     //login
-      this.props.login(`/api/login`,this.state);
-      this.ejemplo();
+      try{
+        const response = await this.props.login(`/api/login`,this.state);
+        this.setState({
+          logged:true,
+          isLoading:false,
+          invalidKeys: false
+        });
+        this.loggedRefresh();
+      }catch(e) {
+        if(e.response){
+          console.error('Error in Submit Response: '+ e.response.data);
+        }
+          console.error('Error in Submit: '+ e);
+      }
+    }else{
+      this.setState({
+        isLoading:false,
+        invalidKeys: true
+      });
     }
   }
 
-  ejemplo() {
+  loggedRefresh() {
     setTimeout(() => {
-      alert('Login success')
       this.props.history.push('/')
-    }, 1000);
+    }, 2000);
   }
 
-  componentDidUpdate(prevProps,prevState){
+  componentDidUpdate(prevProps){
     if(this.props.user.length !== prevProps.user.length){
       this.setUser();
     }
@@ -61,10 +77,21 @@ class Login extends Component {
 
   render() {
     return (
+      
     <div className="container">
       <div className="card loginContent">
         <div className="card-body">
-            <div className="col-lg ">
+            <div className="col-xl">
+                {this.state.logged &&
+                  <div className="alert alert-success" role="alert">
+                    <strong>Login Success!</strong> You'll be redirect to the home! .
+                  </div>
+                }
+                {this.state.invalidKeys &&
+                  <div className="alert alert-warning" role="alert">
+                      <strong>Warning!</strong> Make sure to fill properly all the fields!.
+                  </div>
+                }
               <div>
                 <h3>Login</h3>
               </div>

@@ -12,7 +12,6 @@ export default function Authorization(WrappedComponent, allowedRoles){
 
       render() {
         const role = this.props.user.rol;
-        console.log(this.props);
         if (allowedRoles.includes(role)) {
           return <WrappedComponent {...this.props} />
         } else {
@@ -27,7 +26,7 @@ export default function Authorization(WrappedComponent, allowedRoles){
         userLoad: state.login.user_load,
         userSuccess:  state.login.user_success,
     });
-    
+
     return  connect (mapStateToProps) (WithAuthorization);
 }
 
