@@ -14,6 +14,7 @@ class Edit extends Component {
         }
     }
 
+    
     handleInputChange (target) {
         this.setState(prevState => ({
             formData: {
@@ -22,16 +23,27 @@ class Edit extends Component {
             }}
             ), () => console.log(this.state.formData.description))
     }
+        
+    componentDidMount(){
+        this.props.fetchContent(`/api/posts/${this.props.match.params.id}`);
+    }
+    
+    componentDidUpdate(prevProps){
+        if(this.props.content.length !== prevProps.content.length){
+            this.refreshState();
+        }
+    }
+    refreshState(){
+        this.setState({
+            formData: this.props.content
+        });
 
-  componentDidMount(){
-      this.props.fetchContent(`/api/posts/${this.props.match.params.id}`);
-  }
-
-  onUpdateTitle(event){
-      if(event){
-        this.props.content.title = (event.target.value);  
-      }
-  }
+    }
+    onUpdateTitle(event){
+        if(event){
+            this.props.content.title = (event.target.value);  
+        }
+    }
 
   handleSubmit(e){
       e.preventDefault();
@@ -50,42 +62,45 @@ class Edit extends Component {
     }
 
   render() {
-    if (this.props.content_fetch){
+    if (this.props.contentFetch){
         return <h1> Loading Post!! </h1>
     }
 
-    if (this.props.content_error) {
+    if (this.props.contentError) {
         return <p>Sorry! There was an error loading the post</p>;
     }
     return (
         <div className = "container">
-            <div className = "card">
-            <form onSubmit = {(e) => this.handleSubmit(e)}>
-                <h4>Editando post numero: {this.props.match.params.id}</h4>
-                    <div>
-                        <h5> Title </h5>
-                        <input  name = 'title' onChange = {(e) => this.handleInputChange(e.target)}/>                            
+            <div className = "card centered">
+                <div className="card-body">
+                    <div className="col-xl">
+                        <form onSubmit = {(e) => this.handleSubmit(e)}>
+                            <h4>Editando post numero: {this.props.match.params.id}</h4>
+                            <h5> Title </h5>
+                            <div>
+                                <input  type = "title" className ='form-control' value = {this.state.formData.title} name = 'title' onChange = {(e) => this.handleInputChange(e.target)}/>                            
+                            </div>
+                            <h5> Description </h5>
+                            <div>
+                                <textarea type = "textarea" className ='form-control' value = {this.state.formData.description } name = 'description' onChange = {(e) => this.handleInputChange(e.target)}/>
+                            </div>
+                            <button name = "submit" className = "btn btn-success btn-sm" >
+                                Submit
+                            </button>
+                        </form>
                     </div>
-                    <div>
-                        <h5> Description </h5>
-                        <textarea name = 'description' onChange = {(e) => this.handleInputChange(e.target)}/>
-                    </div>
-                    <button  name = "submit" className = "btn btn-success" >
-                        Submit
-                    </button>
-            </form>
+                </div>
             </div>
         </div>
     );
   }
-
 }
 
 const mapStateToProps = (state) => {
     return {
         content: state.app.content,
-        content_error: state.app.content_error,
-        content_fetch: state.app.content_fetch
+        contentError: state.app.content_error,
+        contentFetch: state.app.content_fetch
     };
 };
 

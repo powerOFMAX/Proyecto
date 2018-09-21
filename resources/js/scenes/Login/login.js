@@ -21,10 +21,11 @@ class Login extends Component {
           ...prevState.formData,
           [target.name]: target.value
       }}
-      ), () => console.log(this.state.formData.password))
+      ))
   }
 
- handleSubmit(){
+ handleSubmit(e){
+   e.preventDefault();
     if((this.state.formData.email.length > 0) && (this.state.formData.password.length > 0)){
        this.props.login(`/api/login`,this.state.formData);
     }
@@ -45,7 +46,7 @@ class Login extends Component {
   render() {
     return (
     <div className="container">
-      <div className="card loginContent">
+      <div className="card centered">
         <div className="card-body">
             <div className="col-xl">
                 {this.props.userSuccess &&
@@ -61,18 +62,22 @@ class Login extends Component {
               <div>
                 <h3>Login</h3>
               </div>
-              <div className="form-group loginContent">
-                  <h5>Email</h5>
-                  <input type= "email" name="email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleInputChange(e.target)} required/>
-              </div>
-              <div className="form-group loginContent">  
-                <h5>Password</h5>
-                
-                <input type="password" name="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handleInputChange(e.target)}  required/>
-              </div>
-              <div className="form-group loginContent">
-                  <button className = "btn btn-success" onClick = {() => this.handleSubmit()}> Login in </button>
-              </div>
+
+              <form onSubmit = {(e) => this.handleSubmit(e)}>
+                <div className="form-group centered">
+                    <h5>Email</h5>
+                    <input type= "email" name="email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleInputChange(e.target)} required/>
+                </div>
+                <div className="form-group centered">  
+                  <h5>Password</h5>
+                  
+                  <input type="password" name="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handleInputChange(e.target)}  required/>
+                </div>
+                <div className="form-group centered">
+                    <button className = "btn btn-success" > Login in </button>
+                </div>
+
+              </form>
             </div>
         </div>
       </div>

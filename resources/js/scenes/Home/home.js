@@ -34,14 +34,13 @@ class Home extends Component {
         try{
             await axios.delete(`/api/posts/${id}`)
                 let posts = this.state.posts.filter(post => post.id !== id);
-                console.log(posts);
                 this.setState({posts})
             }
         catch(e){
             if(e.response){
                 console.error('Error on delete Response: '+ e.response.data);
             }
-            console.error('Error on delete' + e.message);
+                console.error('Error on delete' + e.message);
         }
     }
     
