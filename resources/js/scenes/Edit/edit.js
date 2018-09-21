@@ -78,11 +78,11 @@ class Edit extends Component {
                             <h4>Editando post numero: {this.props.match.params.id}</h4>
                             <h5> Title </h5>
                             <div>
-                                <input  type = "title" className ='form-control' value = {this.state.formData.title} name = 'title' onChange = {(e) => this.handleInputChange(e.target)}/>                            
+                                <input className ='form-control' value = {this.state.formData.title} name = 'title' onChange = {(e) => this.handleInputChange(e.target)}/>                            
                             </div>
                             <h5> Description </h5>
                             <div>
-                                <textarea type = "textarea" className ='form-control' value = {this.state.formData.description } name = 'description' onChange = {(e) => this.handleInputChange(e.target)}/>
+                                <textarea  className ='form-control' value = {this.state.formData.description } name = 'description' onChange = {(e) => this.handleInputChange(e.target)}/>
                             </div>
                             <button name = "submit" className = "btn btn-success btn-sm" >
                                 Submit

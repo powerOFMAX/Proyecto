@@ -89,8 +89,13 @@ class PostController extends Controller
     {
         try
         {
+
+        if (Auth::check()) {
+            // The user is logged in...
             Post::destroy($id);
             return response()->json([], 204);
+        }
+        
         }
         catch(\Exception $e)
         {
