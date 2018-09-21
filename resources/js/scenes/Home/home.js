@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchContent } from "../../actions/app";
 import axios from 'axios';
 
@@ -32,12 +32,14 @@ class Home extends Component {
     handleDelete(id){
         if(!confirm(`Do you want to delete post ${id} ?`)) return false;
         try{
-            axios.delete(`/api/posts/${id}`);
+            axios.delete(`/api/posts/${id}`)
+            .then(
                 this.setState({
                     posts: this.props.content.filter(post => {
                         return post.id !== id;
                     })
-                });
+                })
+            );
             }catch(e){
                 if(e.response){
                     console.error('Error on delete Response: '+ e.response.data);

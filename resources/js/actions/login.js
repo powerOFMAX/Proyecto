@@ -4,18 +4,15 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_LOAD = 'LOGIN_LOAD'; 
 
-
 export function login(url, data){
     return (dispatch) => {
         dispatch(loginLoad())
         axios.post(url, data)
             .then((response) => {
                 dispatch(loginSuccess(response.data));
-                Promise.resolve();
             }) 
             .catch(() => {
                 dispatch(loginError());
-                Promise.reject();
             })
     };
 }

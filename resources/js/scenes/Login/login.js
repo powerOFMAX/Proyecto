@@ -8,32 +8,26 @@ class Login extends Component {
 
     this.state = {
       user: [],
-      email: '',
-      password: '',
-      isLoading:false,
-      logged: false,
+      formData: {
+        email: '',
+        password: '',
+      },
       invalidKeys: false
     }
   }
 
-  handlePassword (value) {
-    this.setState({
-      password: value
-    }, () =>
-    //para que devuelva justo despues del set
-      console.log(this.state.password)
-    );
-  }
-
-  handleEmail(value){
-    this.setState({
-      email: value
-    });
+  handleInputChange (target) {
+    this.setState(prevState => ({
+      formData: {
+          ...prevState.formData,
+          [target.type]: target.value
+      }}
+      ), () => console.log(this.state.formData.password))
   }
 
  handleSubmit(){
-    if((this.state.email.length > 0) && (this.state.password.length > 0)){
-       this.props.login(`/api/login`,this.state);
+    if((this.state.formData.email.length > 0) && (this.state.formData.password.length > 0)){
+       this.props.login(`/api/login`,this.state.formData);
     }
   }
 
@@ -70,15 +64,15 @@ class Login extends Component {
               </div>
               <div className="form-group loginContent">
                   <h5>Email</h5>
-                  <input type= "email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleEmail(e.target.value)} required/>
+                  <input type= "email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleInputChange(e.target)} required/>
               </div>
               <div className="form-group loginContent">  
                 <h5>Password</h5>
                 
-                <input type="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handlePassword(e.target.value)}  required/>
+                <input type="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handleInputChange(e.target)}  required/>
               </div>
               <div className="form-group loginContent">
-                  <button className = "btn btn-success" disable={this.state.isLoading.toString()} onClick = {() => this.handleSubmit()}> Login in </button>
+                  <button className = "btn btn-success" onClick = {() => this.handleSubmit()}> Login in </button>
               </div>
             </div>
         </div>
