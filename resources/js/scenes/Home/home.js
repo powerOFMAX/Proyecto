@@ -29,22 +29,19 @@ class Home extends Component {
         })
     }
     
-    handleDelete(id){
+    async handleDelete(id){
         if(!confirm(`Do you want to delete post ${id} ?`)) return false;
         try{
-            axios.delete(`/api/posts/${id}`)
-            .then(
-                this.setState({
-                    posts: this.props.content.filter(post => {
-                        return post.id !== id;
-                    })
-                })
-            );
-            }catch(e){
-                if(e.response){
-                    console.error('Error on delete Response: '+ e.response.data);
-                }
-            console.error('Error on delete: '+ e.response);
+            await axios.delete(`/api/posts/${id}`)
+                let posts = this.state.posts.filter(post => post.id !== id);
+                console.log(posts);
+                this.setState({posts})
+            }
+        catch(e){
+            if(e.response){
+                console.error('Error on delete Response: '+ e.response.data);
+            }
+            console.error('Error on delete' + e.message);
         }
     }
     

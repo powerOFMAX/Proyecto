@@ -6,19 +6,35 @@ class New extends Component {
     constructor(props){
         super(props);
         this.state = {
-            user: [],
-            formData: []
+            formData: {
+                title: '',
+                description: '',
+            }
         }
     }
 
-    componentDidMount(){
-        
+ 
+    handleInputChange (target) {
+        this.setState(prevState => ({
+          formData: {
+              ...prevState.formData,
+              [target.name]: target.value
+          }}
+          ), () => console.log(this.state.formData.description))
     }
-
+    
     handleSubmit(){
         if((this.state.formData.title.length > 0) && (this.state.formData.description.length > 0)){
-            axios.post(`/api/posts`);
-
+            axios.post(`/api/posts`, {
+                user_id: this.props.user.id,
+                title: this.state.formData.title,
+                description: this.state.formData.description,
+            })
+            .then(
+                setTimeout(() => {
+                    this.props.history.push('/')
+                  }, 2000)
+            );
         }
     }
 
@@ -26,24 +42,21 @@ class New extends Component {
         return (
         <div className = "container">
             <div className = "card">
-                <div className = "card-body">
 
                     <div className = "row"> 
                     <h4>Creando un nuevo post:</h4>
                         <h5> Title </h5>
-                        <input  onChange = {this.onUpdateTitle}/>                            
+                        <input name = 'title' onChange = {(e) => this.handleInputChange(e.target)}/>                            
                     </div>
                     <div className = "row"> 
                         <h5> Description </h5>
-                        <textarea/>
+                        <textarea name = 'description' onChange = {(e) => this.handleInputChange(e.target)}/>
                     </div>
                     <div className = "row"> 
-                        <button name = "submit" onClick={() => this.handleSubmit()} className = "btn btn-success btn-sm" >
+                        <button name = "submit" onClick = {() => this.handleSubmit()} className = "btn btn-success btn-sm" >
                             Submit
                         </button>
                     </div>
-
-                </div>
             </div>
         </div>
         );

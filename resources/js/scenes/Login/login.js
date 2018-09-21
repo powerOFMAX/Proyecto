@@ -11,8 +11,7 @@ class Login extends Component {
       formData: {
         email: '',
         password: '',
-      },
-      invalidKeys: false
+      }
     }
   }
 
@@ -20,7 +19,7 @@ class Login extends Component {
     this.setState(prevState => ({
       formData: {
           ...prevState.formData,
-          [target.type]: target.value
+          [target.name]: target.value
       }}
       ), () => console.log(this.state.formData.password))
   }
@@ -64,12 +63,12 @@ class Login extends Component {
               </div>
               <div className="form-group loginContent">
                   <h5>Email</h5>
-                  <input type= "email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleInputChange(e.target)} required/>
+                  <input type= "email" name="email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleInputChange(e.target)} required/>
               </div>
               <div className="form-group loginContent">  
                 <h5>Password</h5>
                 
-                <input type="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handleInputChange(e.target)}  required/>
+                <input type="password" name="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handleInputChange(e.target)}  required/>
               </div>
               <div className="form-group loginContent">
                   <button className = "btn btn-success" onClick = {() => this.handleSubmit()}> Login in </button>

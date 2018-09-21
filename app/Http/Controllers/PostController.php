@@ -60,7 +60,7 @@ class PostController extends Controller
         }
     }
 
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {   
         try
         {
@@ -74,9 +74,9 @@ class PostController extends Controller
                 $errors = $validateData->errors();
                 return response()->json([ 'message' => $errors->first()], 400);
             }
-
+            $post=Post::findOrFail($id);
             $post->update($request->all());
-            return response()->json([$post], 200);
+            return response()->json(['post' => $post], 200);
         }
         catch(\Exception $e)
         {
