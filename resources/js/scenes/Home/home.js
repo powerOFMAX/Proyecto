@@ -17,7 +17,7 @@ class Home extends Component {
         this.props.fetchContent(`/api/posts/`);
     }
 
-    componentDidUpdate(prevProps,prevState){
+    componentDidUpdate(prevProps){
         if(this.props.content.length !== prevProps.content.length){
             this.setPost();
         }
@@ -29,11 +29,11 @@ class Home extends Component {
         })
     }
     
-    async handleDelete(id){
+    handleDelete(id){
         if(!confirm(`Do you want to delete post ${id} ?`)) return false;
         try{
-            await axios.delete(`/api/posts/${id}`);
-                await this.setState({
+            axios.delete(`/api/posts/${id}`);
+                this.setState({
                     posts: this.props.content.filter(post => {
                         return post.id !== id;
                     })
@@ -56,18 +56,14 @@ class Home extends Component {
         if (this.props.contentError) {
             return <p>Sorry! There was an error loading the posts</p>;
         }
-
-       // if(this.props.userSuccess){
-       //     return <h1> Hola {this.props.user.name} </h1>
-       // }
-
+        
         return (
             <div className = "container">
             {this.props.userSuccess  && <h3> Hola {this.props.user.name}! </h3> }
             {this.props.user.rol==='ADMIN' && 
                 <div>
                     <Link to = {`/new`}>
-                        <span className = "badge badge-secondary"> Create New </span>
+                        <button className = "btn btn-secondary "> Create New </button>
                     </Link>
                 </div>
             }
@@ -110,10 +106,8 @@ const mapStateToProps = state => ({
     contentFetch: state.app.content_fetch
 });
 
-const mapsDispatchToProps = dispatch => {
-    return {
+const mapsDispatchToProps = dispatch => ({
         fetchContent: url => dispatch(fetchContent(url))
-    };
-};
+});
 
 export default connect(mapStateToProps, mapsDispatchToProps) (Home);

@@ -4,9 +4,12 @@ import { connect } from "react-redux";
 
 const NavBar = () => (
         <div className = "navbar">
-
                 <Link to = "/"> Home </Link>
+                <Link to = "/logout"> Log out </Link> 
+        
                 <Link to = "/login"> Login In </Link> 
+                
+
         </div>
 );
 

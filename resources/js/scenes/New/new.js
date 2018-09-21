@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchContent } from "../../actions/app";
-
 
 export default class New extends Component {
     componentDidMount(){

@@ -20,7 +20,7 @@ class Login extends Component {
     this.setState({
       password: value
     }, () =>
-    //para que devuelva
+    //para que devuelva justo despues del set
       console.log(this.state.password)
     );
   }
@@ -31,7 +31,7 @@ class Login extends Component {
     });
   }
 
- handleSubmit(e){
+ handleSubmit(){
     if((this.state.email.length > 0) && (this.state.password.length > 0)){
        this.props.login(`/api/login`,this.state);
     }
@@ -43,7 +43,7 @@ class Login extends Component {
     }, 2000);
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(){
     if(this.props.userSuccess){
       this.loggedRefresh();
     }
@@ -94,10 +94,8 @@ const mapStateToProps = state => ({
   userSuccess:  state.login.user_success,
 });
 
-const mapsDispatchToProps = dispatch => {
-  return {
+const mapsDispatchToProps = dispatch => ({
       login: (url,data) => dispatch(login(url,data))
-  };
-};
+});
 
 export default connect (mapStateToProps, mapsDispatchToProps,) (Login);
