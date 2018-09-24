@@ -24,7 +24,7 @@ Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
 
 //Check Logged
-Route::post('logged', 'LoginController@me');
+Route::post('me', 'LoginController@me');
 
 //Get All the Posts
 Route::get('posts', 'PostController@index');

@@ -31,7 +31,7 @@ export function logout(url){
     }
 }
 
-export function logged(url){
+export function me(url){
     return(dispatch) => {
         axios.post(url)
             .then((response) => {

@@ -45,7 +45,6 @@ class Home extends Component {
         }
     }
     
-
     render() {
         if (this.props.contentFetch){
             return <h1> Loading Posts!! </h1>
@@ -55,7 +54,7 @@ class Home extends Component {
         }
         return (
             <div className = "container">
-            {this.props.userSuccess  && <h3> Hola {this.props.user.name}! </h3> }
+            {this.props.user.length !==0  && <h3> Hola {this.props.user.name}! </h3> }
             {this.props.user.rol==='ADMIN' && 
                 <div>
                     <Link to = {`/new`}>
