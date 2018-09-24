@@ -20,7 +20,7 @@ class See extends Component {
                 <h4>Viendo post numero: {this.props.match.params.id}</h4>
                 <div className= "row">
                     <h5> Title: 
-                    {this.props.content.title}
+                    {this.props.content[0].title}
                     </h5> 
                 </div>
                 <div className="row">
@@ -28,7 +28,7 @@ class See extends Component {
                         Description:    
                     </h5>
                     <p>
-                        {this.props.content.description}
+                        {this.props.content[0].description}
                     </p>
                 </div>
             </div>
