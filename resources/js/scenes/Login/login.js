@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { login } from '../../actions/login';
+import { withAlert } from "react-alert";
 
 class Login extends Component {
   constructor(props){
@@ -14,22 +15,22 @@ class Login extends Component {
       }
     }
   }
-
+  
   handleInputChange (target) {
     this.setState(({
       formData: {
-          ...this.state.formData,
-          [target.name]: target.value
+        ...this.state.formData,
+        [target.name]: target.value
       }}
       ))
-  }
-
- handleSubmit(e){
-   e.preventDefault();
-    if((this.state.formData.email.length > 0) && (this.state.formData.password.length > 0)){
-       this.props.login(`/api/login`,this.state.formData);
     }
-  }
+    
+    handleSubmit(e){
+      e.preventDefault();
+      if((this.state.formData.email.length > 0) && (this.state.formData.password.length > 0)){
+        this.props.login(`/api/login`,this.state.formData);
+      }
+    }
 
   loggedRefresh() {
     setTimeout(() => {
@@ -55,8 +56,8 @@ class Login extends Component {
                   </div>
                 }
                 {this.props.userError &&
-                  <div className="alert alert-warning" role="alert">
-                      <strong>Warning!</strong> Make sure to fill properly all the fields!.
+                  <div className="alert alert-danger" role="alert">
+                      <strong>Error!</strong> Login Fail, make sure to put the correct user!.
                   </div>
                 }
               <div>
@@ -96,4 +97,4 @@ const mapsDispatchToProps = dispatch => ({
       login: (url,data) => dispatch(login(url,data))
 });
 
-export default connect (mapStateToProps, mapsDispatchToProps,) (Login);
+export default connect (mapStateToProps, mapsDispatchToProps,) (withAlert(Login));

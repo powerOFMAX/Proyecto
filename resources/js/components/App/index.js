@@ -13,6 +13,11 @@ import Footer from '../App/components/Footer';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
+
+//React Alert 
+import { Provider as AlertProvider} from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+
 //instalando el redux-devtools-extension
 const enhancer = composeWithDevTools(
     applyMiddleware(thunk)
@@ -36,11 +41,19 @@ const App = () => (
     </div>
 );
 
+const options = {
+    timeout: 5000,
+    position: "bottom center"
+  };
+  
+
 render(
-    <Provider store = {store}>
-        <Router>
-            <App/>
-        </Router>
-    </Provider>,
+    <AlertProvider template={AlertTemplate} {...options}>
+        <Provider store = {store}>
+            <Router>
+                <App/>
+            </Router>
+        </Provider>
+    </AlertProvider>,
     document.getElementById('app') 
 );
