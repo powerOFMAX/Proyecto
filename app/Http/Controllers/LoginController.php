@@ -10,7 +10,8 @@ class LoginController extends Controller
 public function me(){
         try
         {
-            return Auth::guard('userLogged');
+            //preguntar en if y retornar (t o f)
+            return Auth::check();
         }
         catch(\Exception $e){
   
@@ -20,8 +21,7 @@ public function me(){
    public function logout(){
         try
         {   
-            //Auth::id();
-            //Auth::logout();
+            Auth::logout();
         }
         catch(\Exception $e){
  
@@ -52,10 +52,10 @@ public function me(){
                     'email' => $email
                     ])->first();
                     if ( Hash::check($password ,$user->password) ) {
+                        Auth::login($user);
                         return response()->json($user);            
                     }
 
-                Auth::login();
                     
                 return response()->json([],400);
         }

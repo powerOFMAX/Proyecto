@@ -14,9 +14,9 @@ class New extends Component {
     }
  
     handleInputChange (target) {
-        this.setState(prevState => ({
+        this.setState(({
           formData: {
-              ...prevState.formData,
+              ...this.state.formData,
               [target.name]: target.value
           }}
           ))
@@ -46,11 +46,11 @@ class New extends Component {
                     <div className="col-xl">
                         <form onSubmit = {(e) => this.handleSubmit(e)}>
                             <h4>Creando un nuevo post:</h4>
-                            <h5> Title </h5>
+                            <label> Title </label>
                             <div>
                                 <input className = 'form-control' name = 'title' onChange = {(e) => this.handleInputChange(e.target)}/>                            
                             </div>
-                            <h5> Description </h5>
+                            <label> Description </label>
                             <div>
                                 <textarea  className ='form-control' name = 'description' onChange = {(e) => this.handleInputChange(e.target)}/>
                             </div>

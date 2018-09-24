@@ -16,9 +16,9 @@ class Edit extends Component {
 
     
     handleInputChange (target) {
-        this.setState(prevState => ({
+        this.setState(({
             formData: {
-                ...prevState.formData,
+                ...this.state.formData,
                 [target.name]: target.value
             }}
             ), () => console.log(this.state.formData.description))
@@ -76,11 +76,11 @@ class Edit extends Component {
                     <div className="col-xl">
                         <form onSubmit = {(e) => this.handleSubmit(e)}>
                             <h4>Editando post numero: {this.props.match.params.id}</h4>
-                            <h5> Title </h5>
+                            <label> Title </label>
                             <div>
                                 <input className ='form-control' value = {this.state.formData.title} name = 'title' onChange = {(e) => this.handleInputChange(e.target)}/>                            
                             </div>
-                            <h5> Description </h5>
+                            <label> Description </label>
                             <div>
                                 <textarea  className ='form-control' value = {this.state.formData.description } name = 'description' onChange = {(e) => this.handleInputChange(e.target)}/>
                             </div>

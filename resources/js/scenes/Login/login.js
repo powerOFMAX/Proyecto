@@ -16,9 +16,9 @@ class Login extends Component {
   }
 
   handleInputChange (target) {
-    this.setState(prevState => ({
+    this.setState(({
       formData: {
-          ...prevState.formData,
+          ...this.state.formData,
           [target.name]: target.value
       }}
       ))
@@ -65,11 +65,11 @@ class Login extends Component {
 
               <form onSubmit = {(e) => this.handleSubmit(e)}>
                 <div className="form-group centered">
-                    <h5>Email</h5>
+                    <label>Email</label>
                     <input type= "email" name="email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleInputChange(e.target)} required/>
                 </div>
                 <div className="form-group centered">  
-                  <h5>Password</h5>
+                  <label>Password</label>
                   
                   <input type="password" name="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handleInputChange(e.target)}  required/>
                 </div>
