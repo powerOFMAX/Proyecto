@@ -15,7 +15,7 @@ class Login extends Component {
       }
     }
   }
-  
+
   handleInputChange (target) {
     this.setState(({
       formData: {
@@ -42,6 +42,7 @@ class Login extends Component {
     if(this.props.userSuccess){
       this.loggedRefresh();
     }
+    if(this.props.user.length !== 0) this.props.history.push('/');
   }
 
   render() {

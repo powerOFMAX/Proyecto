@@ -15,9 +15,9 @@ class NavBar extends Component {
 
    render() {
     return (
-      <div className = "navbar">
+        <div className = "navbar">
                 <Link to = "/"> Home </Link>
-                {this.props.userSuccess ? (
+                {this.props.user.length !== 0 ? (
                 <Link to = "/login" onClick={() => this.handleLogout()}> Logout </Link>
                 ) : (
                 <Link to = "/login"> Login In </Link> 

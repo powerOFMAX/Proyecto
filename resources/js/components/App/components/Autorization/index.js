@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { logged } from '../../../../actions/login';
 
 export default function Authorization(WrappedComponent, allowedRoles){
     class WithAuthorization extends Component {
@@ -10,8 +11,15 @@ export default function Authorization(WrappedComponent, allowedRoles){
           }
       }
 
+      componentDidMount(){
+        this.props.logged(`/api/logged`);
+      }
+
       render() {
         const role = this.props.user.rol;
+        console.log(allowedRoles);
+        console.log(role);
+        if (allowedRoles.length === 0) return <WrappedComponent {...this.props} /> 
         if (allowedRoles.includes(role)) {
           return <WrappedComponent {...this.props} />
         } else {
@@ -26,7 +34,10 @@ export default function Authorization(WrappedComponent, allowedRoles){
         userLoad: state.login.user_load,
         userSuccess:  state.login.user_success,
     });
+    const mapsDispatchToProps = dispatch => ({
+        logged: (url) => dispatch(logged (url))
+    });
 
-    return  connect (mapStateToProps) (WithAuthorization);
+    return  connect (mapStateToProps, mapsDispatchToProps) (WithAuthorization);
 }
 

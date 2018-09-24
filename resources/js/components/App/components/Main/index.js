@@ -9,9 +9,9 @@ import Autorization from "../Autorization/";
 
 const Main = () => (
         <Switch id='main'>
-            <Route exact path = "/" component = {Home}/>
-            <Route path = "/login" component = {Login}/>
-            <Route path = "/posts/:id" component = {See}/>
+            <Route exact path = "/" component = {Autorization(Home, [])}/>
+            <Route path = "/login" component = {Autorization(Login, [])}/>
+            <Route path = "/posts/:id" component = {Autorization (See, [])}/>
             <Route path = "/edit/:id" component = {Autorization (Edit, ['ADMIN'])}/>
             <Route path = "/new" component ={ Autorization(New, ['ADMIN'])}/>
         </Switch>

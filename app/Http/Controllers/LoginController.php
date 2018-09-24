@@ -10,15 +10,7 @@ class LoginController extends Controller
 {
 
     public function me(){
-        try
-        {
-            //preguntar en if y retornar (t o f)
-            //return Auth::check();
-            return auth()->user();
-        }
-        catch(\Exception $e){
-  
-        }
+        return auth()->user();
     }
 
    public function logout(){
