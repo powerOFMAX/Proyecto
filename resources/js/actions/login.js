@@ -2,7 +2,19 @@ import axios from 'axios';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const LOGIN_LOAD = 'LOGIN_LOAD'; 
+export const LOGIN_LOAD = 'LOGIN_LOAD';
+export const LOGIN_OUT = 'LOGIN_OUT'; 
+
+export function logout(url){
+    return (dispatch) => {
+        axios.post(url)
+            .then((response) => {
+                dispatch( {
+                    type: LOGIN_OUT,
+                })
+            })
+    }
+}
 
 export function login(url, data){
     return (dispatch) => {

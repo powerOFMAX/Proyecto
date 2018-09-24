@@ -1,4 +1,4 @@
-import { LOGIN_ERROR, LOGIN_LOAD, LOGIN_SUCCESS } from '../actions/login';
+import { LOGIN_ERROR, LOGIN_LOAD, LOGIN_SUCCESS, LOGIN_OUT } from '../actions/login';
 
 export function login ( state = {
         user: [],
@@ -34,8 +34,16 @@ export function login ( state = {
                     user_success: false,
                     user_load: false,
                 }
-    
+            case LOGIN_OUT:
+                return{
+                    ...state,
+                    user: [],
+                    user_error: false,
+                    user_success: false,
+                    user_load: false,
+                }
             default:
                 return state;
         }
     }
+

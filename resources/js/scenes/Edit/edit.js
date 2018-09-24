@@ -13,7 +13,6 @@ class Edit extends Component {
             },
         }
     }
-
     
     handleInputChange (target) {
         this.setState({
@@ -29,12 +28,11 @@ class Edit extends Component {
     }
     
     componentDidUpdate(prevProps){
-        console.log('propscontent ',this.props.content, 'prevpropscontent ', prevProps.content )
         if(this.props.content.length >0 && (prevProps.content.length !== this.props.content.length)){
             this.refreshState();
-           console.log(this.props.content)
         }
     }
+
     refreshState(){
         this.setState({
             formData: {

@@ -96,7 +96,7 @@ const mapStateToProps = state => ({
 });
 
 const mapsDispatchToProps = dispatch => ({
-      login: (url,data) => dispatch(login(url,data))
+      login: (url, data) => dispatch(login(url, data))
 });
 
 export default connect (mapStateToProps, mapsDispatchToProps,) (withAlert(Login));

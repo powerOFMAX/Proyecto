@@ -20,6 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Login
 Route::post('login', 'LoginController@login');
 
+//Logout
+Route::post('logout', 'LoginController@logout');
+
 //Get All the Posts
 Route::get('posts', 'PostController@index');
 
