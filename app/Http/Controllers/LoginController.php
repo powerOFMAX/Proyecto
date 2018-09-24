@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
 
-public function me(){
+    public function me(){
         try
         {
             //preguntar en if y retornar (t o f)
-            return Auth::check();
+            //return Auth::check();
+            return auth()->user();
         }
         catch(\Exception $e){
   
@@ -39,13 +42,11 @@ public function me(){
                 'email' => 'required | exists:users,email',
                 'password' => 'required | max:255', 
                 ]);
-
                 
                 if($validateData->fails()){
                     $errors = $validateData->errors();
                     return response()->json([ 'message' => $errors->first()], 400);
                 }
-                
                 
                 $user = User::
                 where([
@@ -53,10 +54,9 @@ public function me(){
                     ])->first();
                     if ( Hash::check($password ,$user->password) ) {
                         Auth::login($user);
-                        return response()->json($user);            
-                    }
+                    return response()->json($user);            
+                }
 
-                    
                 return response()->json([],400);
         }
         catch(\Exception $e)

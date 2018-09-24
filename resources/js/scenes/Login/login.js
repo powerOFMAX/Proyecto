@@ -51,7 +51,9 @@ class Login extends Component {
         <div className="card-body">
             <div className="col-xl">
                 {this.props.userSuccess &&
+
                   <div className="alert alert-success" role="alert">
+                  
                     <strong>Login Success!</strong> You'll be redirect to the home! .
                   </div>
                 }

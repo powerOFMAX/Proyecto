@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Login
-Route::post('login', 'UserController@login');
+Route::post('login', 'LoginController@login');
 
 //Get All the Posts
 Route::get('posts', 'PostController@index');
@@ -26,12 +26,13 @@ Route::get('posts', 'PostController@index');
 //Get a specific Post by ID
 Route::get('posts/{id}','PostController@show');
 
-//Delete a Post
-Route::delete('posts/{id}', 'PostController@destroy');
+Route::group(['middleware' => ['logged']], function (){
+    //Delete a Post
+    Route::delete('posts/{id}', 'PostController@destroy');
+    //Update a Post
+    Route::put('posts/{id}','PostController@update');
+    //Insert a Post
+    Route::post('posts','PostController@store');
+});
 
-//Update a Post
-Route::put('posts/{id}','PostController@update');
-
-//Insert a Post
-Route::post('posts','PostController@store');
 

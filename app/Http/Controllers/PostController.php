@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -51,12 +52,12 @@ class PostController extends Controller
         try
         {
             $post = Post::findOrFail($id);
-            return response()->json($post);
+            return response()->json([$post]);
         }
         catch(\Exception $e)
         {
             \Log::error('Error in PostController - show Method '.$e);
-            return response()->json(null, 500);
+            return response()->json([], 500);
         }
     }
 
@@ -89,12 +90,10 @@ class PostController extends Controller
     {
         try
         {
-
-        if (Auth::check()) {
-            // The user is logged in...
+        //if (Auth::check()) {
             Post::destroy($id);
             return response()->json([], 204);
-        }
+        //}
         
         }
         catch(\Exception $e)

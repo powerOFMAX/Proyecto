@@ -16,12 +16,12 @@ class Edit extends Component {
 
     
     handleInputChange (target) {
-        this.setState(({
+        this.setState({
             formData: {
                 ...this.state.formData,
                 [target.name]: target.value
             }}
-            ), () => console.log(this.state.formData.description))
+            ), () => console.log(this.state.formData.description)
     }
         
     componentDidMount(){
@@ -29,16 +29,21 @@ class Edit extends Component {
     }
     
     componentDidUpdate(prevProps){
-        if(this.props.content.length !== prevProps.content.length){
+        console.log('propscontent ',this.props.content, 'prevpropscontent ', prevProps.content )
+        if(this.props.content.length >0 && (prevProps.content.length !== this.props.content.length)){
             this.refreshState();
+           console.log(this.props.content)
         }
     }
     refreshState(){
         this.setState({
-            formData: this.props.content
+            formData: {
+                title: this.props.content[0].title,
+                description: this.props.content[0].description
+            }
         });
-
     }
+
     onUpdateTitle(event){
         if(event){
             this.props.content.title = (event.target.value);  
