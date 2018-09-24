@@ -11,12 +11,12 @@ export function login(url, data){
     return (dispatch) => {
         dispatch(loginLoad())
         axios.post(url, data)
-        .then((response) => {
-            dispatch(loginSuccess(response.data));
-        }) 
-        .catch(() => {
-            dispatch(loginError());
-        })
+            .then((response) => {
+                dispatch(loginSuccess(response.data));
+            }) 
+            .catch(() => {
+                dispatch(loginError());
+            })
     };
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from '../../../../actions/login';
+import { withAlert } from "react-alert";
 
 
 class NavBar extends Component {
@@ -11,6 +12,7 @@ class NavBar extends Component {
 
     handleLogout(){
         this.props.logout(`/api/logout`);
+        this.props.alert.success('Logout success!')
     }
 
    render() {
@@ -38,5 +40,5 @@ const mapsDispatchToProps = (dispatch) => ({
     logout: (url) => dispatch(logout(url))
 });
 
-export default connect (mapStateToProps, mapsDispatchToProps) (NavBar);
+export default connect (mapStateToProps, mapsDispatchToProps) (withAlert(NavBar));
       

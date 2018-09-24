@@ -17,23 +17,26 @@ class Login extends Component {
   }
 
   handleInputChange (target) {
-    this.setState(({
+    this.setState({
       formData: {
         ...this.state.formData,
         [target.name]: target.value
-      }}
-      ))
-    }
-    
-    handleSubmit(e){
-      e.preventDefault();
-      if((this.state.formData.email.length > 0) && (this.state.formData.password.length > 0)){
-        this.props.login(`/api/login`,this.state.formData);
       }
+    });
+  }
+    
+  handleSubmit(e){
+    e.preventDefault();
+    if((this.state.formData.email.length > 0) && (this.state.formData.password.length > 0)){
+      this.props.login(`/api/login`,this.state.formData);
     }
+  }
 
   componentDidUpdate(){
-    if(this.props.user.length !== 0) this.props.history.push('/');
+    if(this.props.user.length !== 0) {
+      this.props.alert.success(`You 're logged`);
+      this.props.history.push('/');
+    }
   }
 
   render() {
@@ -42,22 +45,15 @@ class Login extends Component {
       <div className="card centered">
         <div className="card-body">
             <div className="col-xl">
-                {this.props.userSuccess &&
+              {this.props.userError && 
+                <div className="alert alert-danger" role="alert">
+                    <strong>Error!</strong> Login Fail, make sure to put the correct user!.
+                </div>
+              }
 
-                  <div className="alert alert-success" role="alert">
-                  
-                    <strong>Login Success!</strong> You'll be redirect to the home! .
-                  </div>
-                }
-                {this.props.userError &&
-                  <div className="alert alert-danger" role="alert">
-                      <strong>Error!</strong> Login Fail, make sure to put the correct user!.
-                  </div>
-                }
               <div>
                 <h3>Login</h3>
               </div>
-
               <form onSubmit = {(e) => this.handleSubmit(e)}>
                 <div className="form-group centered">
                     <label>Email</label>
