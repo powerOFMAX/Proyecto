@@ -32,16 +32,7 @@ class Login extends Component {
       }
     }
 
-  loggedRefresh() {
-    setTimeout(() => {
-      this.props.history.push('/')
-    }, 2000);
-  }
-
   componentDidUpdate(){
-    if(this.props.userSuccess){
-      this.loggedRefresh();
-    }
     if(this.props.user.length !== 0) this.props.history.push('/');
   }
 
@@ -89,14 +80,14 @@ class Login extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.login.user,
   userError: state.login.user_error,
   userLoad: state.login.user_load,
   userSuccess:  state.login.user_success,
 });
 
-const mapsDispatchToProps = dispatch => ({
+const mapsDispatchToProps = (dispatch) => ({
       login: (url, data) => dispatch(login(url, data))
 });
 

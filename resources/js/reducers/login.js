@@ -15,18 +15,18 @@ export function login ( state = {
                     user_error: false,
                     user_success: false,
                     user_load: true,
-                   
+                    
                 }
-    
+
             case LOGIN_SUCCESS:
-            return {
-                ...state,
-                user: action.user,
-                user_error: false,
-                user_success: true,
-                user_load: false,
+                return {
+                    ...state,
+                    user: action.user,
+                    user_error: false,
+                    user_success: true,
+                    user_load: false,
             }
-    
+
             case LOGIN_ERROR:
                 return {
                     ...state,
@@ -34,6 +34,7 @@ export function login ( state = {
                     user_success: false,
                     user_load: false,
                 }
+
             case LOGIN_OUT:
                 return {
                     ...state,
@@ -42,11 +43,13 @@ export function login ( state = {
                     user_success: false,
                     user_load: false,
                 }
+
             case USER_LOGGED:
                 return {
                     ...state,
                     user: action.user,
                 }
+
             default:
                 return state;
         }

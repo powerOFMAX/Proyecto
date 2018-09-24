@@ -16,23 +16,23 @@ class NavBar extends Component {
    render() {
     return (
         <div className = "navbar">
-                <Link to = "/"> Home </Link>
-                {this.props.user.length !== 0 ? (
-                <Link to = "/login" onClick={() => this.handleLogout()}> Logout </Link>
-                ) : (
-                <Link to = "/login"> Login In </Link> 
-                )}
+            <Link to = "/"> Home </Link>
+            {this.props.user.length !== 0 ? (
+            <Link to = "/login" onClick={() => this.handleLogout()}> Logout </Link>
+            ) : (
+            <Link to = "/login"> Login In </Link> 
+            )}
         </div>
     );
    }
 }
 
 const mapStateToProps = (state) => ({
-        user: state.login.user,
-        userError: state.login.user_error,
-        userLoad: state.login.user_load,
-        userSuccess:  state.login.user_success,
-      });
+    user: state.login.user,
+    userError: state.login.user_error,
+    userLoad: state.login.user_load,
+    userSuccess:  state.login.user_success,
+});
 
 const mapsDispatchToProps = (dispatch) => ({
     logout: (url) => dispatch(logout(url))

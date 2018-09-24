@@ -14,13 +14,7 @@ class LoginController extends Controller
     }
 
    public function logout(){
-        try
-        {   
-            Auth::logout();
-        }
-        catch(\Exception $e){
- 
-        }
+        Auth::logout();
    }
 
     public function login(Request $request)

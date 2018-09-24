@@ -45,7 +45,6 @@ const options = {
     timeout: 5000,
     position: "bottom center"
   };
-  
 
 render(
     <AlertProvider template={AlertTemplate} {...options}>

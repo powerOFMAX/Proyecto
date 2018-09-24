@@ -37,14 +37,14 @@ class See extends Component {
 
 }
 
-const mapStateToProps = state => ({
-        content: state.app.content,
-        contentError: state.app.content_error,
-        contentFetch: state.app.content_fetch
-    });
+const mapStateToProps = (state) => ({
+    content: state.app.content,
+    contentError: state.app.content_error,
+    contentFetch: state.app.content_fetch
+});
 
-const mapsDispatchToProps = dispatch => ({
-        fetchContent: (url) => dispatch(fetchContent(url))
-    });
+const mapsDispatchToProps = (dispatch) => ({
+    fetchContent: (url) => dispatch(fetchContent(url))
+});
 
 export default connect(mapStateToProps, mapsDispatchToProps) (See);

@@ -14,12 +14,12 @@ class New extends Component {
     }
  
     handleInputChange (target) {
-        this.setState(({
+        this.setState({
           formData: {
-              ...this.state.formData,
-              [target.name]: target.value
-          }}
-          ))
+            ...this.state.formData,
+            [target.name]: target.value
+          }
+        })
     }
     
     handleSubmit(e){
