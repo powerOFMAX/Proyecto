@@ -18,11 +18,11 @@ class NavBar extends Component {
    render() {
     return (
         <div className = "navbar" id='header'>
-            <Link to = "/"> Home </Link>
+            <Link to = "/" > Home </Link>
             {this.props.userSuccess ? (
-            <Link to = "/login" onClick={() => this.handleLogout()}> Logout </Link>
+            <a href="javascript:;" dusk="logout-link" onClick={() => this.handleLogout()}> Logout </a>
             ) : (
-            <Link to = "/login"> Login In </Link> 
+            <Link to = "/login" dusk="login-link"> Login In </Link> 
             )}
         </div>
     );

@@ -57,15 +57,15 @@ class Login extends Component {
               <form onSubmit = {(e) => this.handleSubmit(e)}>
                 <div className="form-group centered">
                     <label>Email</label>
-                    <input type= "email" name="email" className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleInputChange(e.target)} required/>
+                    <input  type= "email" dusk="email" name='email' className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleInputChange(e.target)} required/>
                 </div>
                 <div className="form-group centered">  
                   <label>Password</label>
                   
-                  <input type="password" name="password" className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handleInputChange(e.target)}  required/>
+                  <input type="password" dusk="password" name='password' className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handleInputChange(e.target)}  required/>
                 </div>
                 <div className="form-group centered">
-                    <button className = "btn btn-success" > Login in </button>
+                    <button dusk="button-success" name="button-success" className = "btn btn-success" > Login in </button>
                 </div>
 
               </form>
