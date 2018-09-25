@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { withAlert } from "react-alert";
 
 class New extends Component {
     constructor(props){
@@ -14,24 +15,40 @@ class New extends Component {
     }
  
     handleInputChange (target) {
+        if(target.name === 'title') {
+            if(target.value.length>255) return false;
+        }
+
         this.setState({
-          formData: {
+            formData: {
             ...this.state.formData,
             [target.name]: target.value
-          }
+            }
         })
     }
     
     handleSubmit(e){
         e.preventDefault();
-        if((this.state.formData.title.length > 0) && (this.state.formData.description.length > 0)){
-            axios.post(`/api/posts`, {
-                user_id: this.props.user.id,
-                title: this.state.formData.title,
-                description: this.state.formData.description,
-            })
-                .then(this.props.history.push('/'));
+        const data = this.state.formData;
+        if (data.title.length < 1) {
+            this.props.alert.error('The title is required.');
+            return false
         }
+        if(data.title.length>255) {
+            this.props.aler.error('The max of caracters is 255 at the title')
+            return false;
+        }
+        if (data.description.length < 1 ) {
+            this.props.alert.error('The Description is required.');
+            return false;
+        }
+
+        axios.post(`/api/posts`, {
+            user_id: this.props.user.id,
+            title: data.title,
+            description: data.description,
+            }).then(this.props.history.push('/')
+        );
     }
 
     render() {
@@ -44,11 +61,11 @@ class New extends Component {
                             <h4>Creando un nuevo post:</h4>
                             <label> Title </label>
                             <div>
-                                <input className = 'form-control' name = 'title' onChange = {(e) => this.handleInputChange(e.target)}/>                            
+                                <input className = 'form-control' name = 'title' value = {this.state.formData.title} onChange = {(e) => this.handleInputChange(e.target)}/>                            
                             </div>
                             <label> Description </label>
                             <div>
-                                <textarea  className ='form-control' name = 'description' onChange = {(e) => this.handleInputChange(e.target)}/>
+                                <textarea  className ='form-control' name = 'description' value = {this.state.formData.description} onChange = {(e) => this.handleInputChange(e.target)}/>
                             </div>
                             <button name = "submit" className = "btn btn-success btn-sm" >
                                 Submit
@@ -69,4 +86,4 @@ const mapStateToProps = state => ({
     userSuccess:  state.login.user_success,
   });
   
-export default connect(mapStateToProps) (New);
+export default connect(mapStateToProps) (withAlert(New));

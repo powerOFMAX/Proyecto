@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchContent } from '../../actions/app';
 import axios from 'axios';
+import { withAlert } from "react-alert";
 
 class Edit extends Component {
     constructor(props){
@@ -49,15 +50,27 @@ class Edit extends Component {
     }
 
     handleSubmit(e){
-      e.preventDefault();
-        if((this.state.formData.title.length > 0) && (this.state.formData.description.length > 0)){
-            axios.put(`/api/posts/${this.props.match.params.id}`, {
-                user_id: this.props.user.id,
-                title: this.state.formData.title,
-                description: this.state.formData.description,
-            })
-                .then(this.props.history.push('/'));
+        e.preventDefault();
+        const data= this.state.formData;
+        if (data.title.length < 1) {
+            this.props.alert.error('The title is required.');
+            return false
         }
+        if(data.title.length>255) {
+            this.props.aler.error('The max of caracters is 255 at the title')
+            return false;
+        }
+        if (data.description.length < 1 ) {
+            this.props.alert.error('The Description is required.');
+            return false;
+        }
+
+        axios.put(`/api/posts/${this.props.match.params.id}`, {
+            user_id: this.props.user.id,
+            title: data.title,
+            description: data.description,
+            }).then(this.props.history.push('/')
+        );
     }
 
     render() {
@@ -104,4 +117,4 @@ const mapsDispatchToProps = (dispatch) => ({
     fetchContent: (url) => dispatch(fetchContent(url))
 });
 
-export default connect(mapStateToProps, mapsDispatchToProps) (Edit);
+export default connect(mapStateToProps, mapsDispatchToProps) (withAlert(Edit));
