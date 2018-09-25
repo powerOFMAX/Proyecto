@@ -34,7 +34,7 @@ function configureStore(initialState = {}) {
 const store = configureStore();
 
 const App = () => (
-    <div>
+    <div id="wrapper">
         <NavBar/>
         <Main/>
         <Footer/>

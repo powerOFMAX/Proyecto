@@ -17,7 +17,7 @@ class NavBar extends Component {
 
    render() {
     return (
-        <div className = "navbar">
+        <div className = "navbar" id='header'>
             <Link to = "/"> Home </Link>
             {this.props.user.length !== 0 ? (
             <Link to = "/login" onClick={() => this.handleLogout()}> Logout </Link>

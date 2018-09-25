@@ -8,7 +8,7 @@ import New from "../../../../scenes/New/new";
 import Autorization from "../Autorization/";
 
 const Main = () => (
-    <Switch id='main'>
+    <Switch id="content">
         <Route exact path = "/" component = {Autorization(Home, [])}/>
         <Route path = "/login" component = {Autorization(Login, [])}/>
         <Route path = "/posts/:id" component = {Autorization (See, [])}/>
