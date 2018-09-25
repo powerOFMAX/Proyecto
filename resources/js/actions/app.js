@@ -14,11 +14,14 @@ export const APP_FETCH = 'APP_FETCH';
 //} 
 
 export function fetchContent(url) {
-    return (dispatch) => {
-        dispatch(appFetch())
-        axios.get(url)
-            .then((response) => dispatch(appSuccess(response.data)))
-            .catch(() => dispatch(appError()));
+    return async (dispatch) => {
+        try {
+            dispatch(appFetch());
+            const response = await axios.get(url);
+            dispatch(appSuccess(response.data));   
+        } catch (error) {
+            dispatch(appError());
+        }
     };
 }
 

@@ -27,28 +27,34 @@ class New extends Component {
         })
     }
     
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault();
         const data = this.state.formData;
         if (data.title.length < 1) {
             this.props.alert.error('The title is required.');
-            return false
+            return false;
         }
         if(data.title.length>255) {
-            this.props.aler.error('The max of caracters is 255 at the title')
+            this.props.aler.error('The max of caracters is 255 at the title');
             return false;
         }
         if (data.description.length < 1 ) {
             this.props.alert.error('The Description is required.');
             return false;
         }
-
-        axios.post(`/api/posts`, {
-            user_id: this.props.user.id,
-            title: data.title,
-            description: data.description,
-            }).then(this.props.history.push('/')
-        );
+        try {
+            await axios.post(`/api/posts`, {
+                user_id: this.props.user.id,
+                title: data.title,
+                description: data.description,
+                });
+            this.props.history.push('/');
+        } catch (e) {
+            if(e.response){
+                console.error('Error on Submit Response' + e.response.data);
+            }
+                console.error('Error on Submit' + e.message);
+        }
     }
 
     render() {

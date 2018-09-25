@@ -7,39 +7,36 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_ERROR = 'LOGOUT_ERROR'; 
 
 export function login(url, data){
-    return (dispatch) => {
-        dispatch(loginLoad())
-        axios.post(url, data)
-            .then((response) => {
-                dispatch(loginSuccess(response.data));
-            }) 
-            .catch(() => {
-                dispatch(loginError());
-            })
+    return async (dispatch) => {
+        try {
+            dispatch(loginLoad())
+            const response = await axios.post(url, data);
+            dispatch(loginSuccess(response.data));
+        } catch (error) {
+            dispatch(loginError());
+        }
     };
 }
 
 export function me(url){
-    return(dispatch) => {
-        axios.post(url)
-            .then((response) => {
-                dispatch(loginSuccess(response.data))
-            })
-            .catch(() => {
-                dispatch(logoutSuccess())
-            })
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(url);
+            dispatch(loginSuccess(response.data));
+        } catch (error) {
+            dispatch(logoutSuccess());
+        }
     }
 }
 
 export function logout(url){
-    return (dispatch) => {
-        axios.post(url)
-            .then((response) => {
-                dispatch(logoutSuccess())
-            })
-            .catch(() => {
-                dispatch(logoutError())
-            })
+    return async (dispatch) => {
+        try {
+            await axios.post(url);
+            dispatch(logoutSuccess());
+        } catch (error) {
+            dispatch(logoutError())
+        }
     }
 }
 

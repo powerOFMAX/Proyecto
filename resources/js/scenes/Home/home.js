@@ -31,12 +31,11 @@ class Home extends Component {
     
     async handleDelete(id){
         if(!confirm(`Do you want to delete post ${id} ?`)) return false;
-        try{
-            await axios.delete(`/api/posts/${id}`)
-                let posts = this.state.posts.filter(post => post.id !== id);
-                this.setState({posts})
-            }
-        catch(e){
+        try {
+            await axios.delete(`/api/posts/${id}`);
+            let posts = this.state.posts.filter(post => post.id !== id);
+            this.setState({posts})
+        }catch (e) {
             if(e.response){
                 console.error('Error on delete Response: '+ e.response.data);
             }
