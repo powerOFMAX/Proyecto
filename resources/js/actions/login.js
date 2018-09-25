@@ -2,10 +2,9 @@ import axios from 'axios';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const LOGIN_LOAD = 'LOGIN_LOAD';
-export const LOGIN_OUT = 'LOGIN_OUT'; 
-export const USER_LOGGED = 'USER_LOGGED';
-
+export const LOGIN_FETCH = 'LOGIN_FETCH';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_ERROR = 'LOGOUT_ERROR'; 
 
 export function login(url, data){
     return (dispatch) => {
@@ -20,27 +19,40 @@ export function login(url, data){
     };
 }
 
-export function logout(url){
-    return (dispatch) => {
-        axios.post(url)
-            .then((response) => {
-                dispatch( {
-                    type: LOGIN_OUT,
-                })
-            })
-    }
-}
-
 export function me(url){
     return(dispatch) => {
         axios.post(url)
             .then((response) => {
-                dispatch( {
-                    type: USER_LOGGED,
-                    user: response.data
-                })
+                dispatch(loginSuccess(response.data))
+            })
+            .catch(() => {
+                dispatch(logoutSuccess())
             })
     }
+}
+
+export function logout(url){
+    return (dispatch) => {
+        axios.post(url)
+            .then((response) => {
+                dispatch(logoutSuccess())
+            })
+            .catch(() => {
+                dispatch(logoutError())
+            })
+    }
+}
+
+function logoutSuccess () {
+    return {
+        type: LOGOUT_SUCCESS
+    };
+}
+
+function logoutError () {
+    return {
+        type: LOGOUT_ERROR
+    };
 }
 
 function loginSuccess (user) {
@@ -58,6 +70,6 @@ function loginError () {
 
 function loginLoad () {
     return {
-        type: LOGIN_LOAD
+        type: LOGIN_FETCH
     };
 }

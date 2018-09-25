@@ -4,8 +4,8 @@ import { me } from '../../../../actions/login';
 
 export default function Authorization(WrappedComponent, allowedRoles){
   class WithAuthorization extends Component {
-    constructor(props) {
-      super(props);
+    constructor() {
+      super();
       this.state = {
           user: []
         }
@@ -16,9 +16,7 @@ export default function Authorization(WrappedComponent, allowedRoles){
     }
 
     handleAccessDenied(){
-      setTimeout(() => {
-        this.props.history.push('/')
-      }, 1000);
+        this.props.history.push('/');
     }
 
     render() {
@@ -43,6 +41,6 @@ export default function Authorization(WrappedComponent, allowedRoles){
       me: (url) => dispatch(me(url))
   });
 
-  return  connect (mapStateToProps, mapsDispatchToProps) (WithAuthorization);
+  return connect (mapStateToProps, mapsDispatchToProps) (WithAuthorization);
 }
 

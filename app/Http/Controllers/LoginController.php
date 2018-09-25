@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-
     public function me(){
-        return auth()->user();
+        if(auth()->check()){
+            return auth()->user();
+        }
+        else
+        {
+            return response()->json([ 'message' => 'Login Error'], 401);
+        }
     }
-
    public function logout(){
         Auth::logout();
    }
@@ -27,23 +31,20 @@ class LoginController extends Controller
             $validateData = \Validator::make($request->all(),[
                 'email' => 'required | exists:users,email',
                 'password' => 'required | max:255', 
-                ]);
+            ]);
                 
-                if($validateData->fails()){
-                    $errors = $validateData->errors();
-                    return response()->json([ 'message' => $errors->first()], 400);
-                }
-                
-                $user = User::
-                where([
-                    'email' => $email
-                    ])->first();
-                    if ( Hash::check($password ,$user->password) ) {
-                        Auth::login($user);
-                    return response()->json($user);            
-                }
+            if($validateData->fails()){
+                $errors = $validateData->errors();
+                return response()->json([ 'message' => $errors->first()], 400);
+            }
+            
+            $user = User::where(['email' => $email])->first();
+            if ( Hash::check($password ,$user->password) ) {
+                Auth::login($user);
+                return response()->json($user);            
+            }
 
-                return response()->json([],400);
+            return response()->json([],400);
         }
         catch(\Exception $e)
         {

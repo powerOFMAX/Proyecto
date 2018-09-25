@@ -28,7 +28,7 @@ class PostController extends Controller
         {
             $validateData = \Validator::make($request->all(),[
                 'user_id' => 'required',
-                'title' => 'required | max:10',
+                'title' => 'required | max:255',
                 'description' => 'required', 
             ]);
     

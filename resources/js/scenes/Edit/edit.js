@@ -56,11 +56,7 @@ class Edit extends Component {
                 title: this.state.formData.title,
                 description: this.state.formData.description,
             })
-            .then(
-                setTimeout(() => {
-                    this.props.history.push('/')
-                }, 2000)
-            );
+                .then(this.props.history.push('/'));
         }
     }
 
