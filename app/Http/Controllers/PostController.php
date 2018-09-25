@@ -12,7 +12,7 @@ class PostController extends Controller
     {   
         try
         {
-            $post = Post::all();
+            $post = Post::orderBy("created_at",'desc')->get();
             return response()->json($post);
         }
         catch(\Exception $e)
@@ -90,11 +90,8 @@ class PostController extends Controller
     {
         try
         {
-        //if (Auth::check()) {
             Post::destroy($id);
-            return response()->json([], 204);
-        //}
-        
+            return response()->json([], 204);        
         }
         catch(\Exception $e)
         {

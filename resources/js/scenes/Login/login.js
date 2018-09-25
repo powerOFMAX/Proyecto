@@ -50,6 +50,7 @@ class Login extends Component {
                     <strong>Error!</strong> Login Fail, make sure to put the correct user!.
                 </div>
               }
+
               <div>
                 <h3>Login</h3>
               </div>
