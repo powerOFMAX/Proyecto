@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\Post;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -13,35 +14,33 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                //Hago click en Login
-                    ->assertSee('Login In')
+                    ->assertPathIs('/')
+                    ->assertSee('MyBlog')
                     ->clickLink('Login In')
-                //Verifico que estoy ahi
-                    ->assertSee('Password')
+                //Go to the login View
+                    ->assertPathIs('/login')
                     ->type('email', 'admin@admin.com')
                     ->type('password', '1234')
-                    ->click('.btn-success')
-                    ->assertSee('Email')
-                //Espero a que me redireccione al home
-                    ->waitFor('.badge-danger')
-                //Clickeo en crear y creo el post
+                    ->press('Login in')
+                //Wait for home & Create a new Post
+                    ->waitForLocation('/')
                     ->clickLink('Create')
                     ->assertSee("Creando un nuevo post")
                     ->type('title','Hola Soy un post Creado por el test')
                     ->type('description', 'soy la descripcion del test')
-                    ->click('.btn-success')
-                //Espero a que me redireccione al home
-                    ->waitFor('.badge-danger')
-                //Hago un edit talvez explota porq hace un get consultando el id
+                    ->press('Submit')
+                //Wait data & Post Edit
+                    ->waitUntil('window.store.getState().app.content.length>0',15)
                     ->clickLink('Edit')
                     ->assertSee('Editando post numero')
                     ->type('title', 'Soy un post del test modificado')
                     ->type('description', 'Soy la descripcion modificada :DD por el test')
-                    ->click('.btn-success')
-                //Vuelvo al home y lo elimino
-                    ->waitFor('.badge-danger')
-                    ->click('.badge-danger')
-                    ->acceptDialog();
-        });
+                    ->press('Submit')
+                //Wait Home & Delete
+                    ->waitForLocation('/')
+                    ->waitUntil('window.store.getState().app.content.length>0',15);
+                     $post = Post::where(['title' => 'Soy un post del test modificado'])->first()->id;
+                     $browser->press('@delete-'.$post)->acceptDialog();
+            });
     }
 }

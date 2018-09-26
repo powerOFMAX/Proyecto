@@ -52,14 +52,18 @@ class Home extends Component {
         }
         return (
             <div className = "container">
+                <h1>
+                    MyBlog
+                </h1>
                 {this.props.userSuccess  && <h3> Hola {this.props.user.name}! </h3> }
                 {this.props.user.rol==='ADMIN' && 
                     <div>
                         <Link to = {`/new`}>
                             <button className = "btn btn-secondary "> Create New </button>
                         </Link>
-                    </div>
+                    </div> 
                 }
+                
                 {this.state.posts.map(post => (
                     <div className = "card row mt-4 " key={post.id}>
 
@@ -73,7 +77,7 @@ class Home extends Component {
                                     <Link to = {`/edit/${post.id}`}>
                                         <span className = "badge badge-info" onClick = {this.onClickEdit}> Edit </span>
                                     </Link>
-                                        <span className = "badge badge-danger" onClick = {() => this.handleDelete(post.id)}> Delete </span>
+                                        <span className = "badge badge-danger" dusk={`delete-${post.id}`} onClick = {() => this.handleDelete(post.id)}> Delete </span>
                                 </div>
                             }
                         </div>
