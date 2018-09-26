@@ -18,7 +18,7 @@ const Footer = () => (
                         <a href="http://www.github.com/powerOFMAX"> Github </a>
                     </div>
                     <div className="col-md-4 footer-col">
-                        <h5>Contanct</h5>
+                        <h5>Contact</h5>
                         <p>
                             CABA - Argentina <br/>
                             Calle Falsa 400
