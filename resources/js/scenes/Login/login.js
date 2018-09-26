@@ -65,7 +65,7 @@ class Login extends Component {
                   <input type="password" dusk="password" name='password' className="form-control" placeholder="password" value= {this.state.password} onChange = {(e) => this.handleInputChange(e.target)}  required/>
                 </div>
                 <div className="form-group centered">
-                    <button dusk="button-success" name="button-success" className = "btn btn-success" > Login in </button>
+                    <button dusk="button-submit" name="button-submit" className = "btn btn-success" > Login in </button>
                 </div>
 
               </form>
