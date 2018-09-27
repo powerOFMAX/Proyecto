@@ -104,7 +104,7 @@ class Edit extends Component {
                 <div className = "card centered">
                     <div className="card-body">
                         <div className="col-xl">
-                            <form onSubmit = {(e) => this.handleSubmit(e)}>
+                            <form dusk="login-form"  onSubmit = {(e) => this.handleSubmit(e)}>
                                 <h4>Editando post numero: {this.props.match.params.id}</h4>
                                 <label> Title </label>
                                 <div>

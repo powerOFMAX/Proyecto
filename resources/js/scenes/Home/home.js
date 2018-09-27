@@ -90,7 +90,7 @@ class Home extends Component {
 
                             {this.props.user.rol==='ADMIN' && 
                                 <div className="col-lg">
-                                    <Link to = {`/edit/${post.id}`} className = "badge badge-info">
+                                    <Link to = {`/edit/${post.id}`} className = "badge badge-info" dusk={`edit-${post.id}`}>
                                         Edit
                                     </Link>
                                     <a href="javascript:;" className = "badge badge-danger" dusk={`delete-${post.id}`} onClick = {() => this.handleDelete(post.id)}> Delete </a>
