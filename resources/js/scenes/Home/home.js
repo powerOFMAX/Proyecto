@@ -84,7 +84,7 @@ class Home extends Component {
 
                             {this.props.user.rol==='ADMIN' && 
                                 <div className="col-lg">
-                                    <Link to = {`/edit/${post.id}`} className = "badge badge-info" onClick = {this.onClickEdit}>
+                                    <Link to = {`/edit/${post.id}`} className = "badge badge-info">
                                         Edit
                                     </Link>
                                     <a href="javascript:;" className = "badge badge-danger" dusk={`delete-${post.id}`} onClick = {() => this.handleDelete(post.id)}> Delete </a>
@@ -94,7 +94,7 @@ class Home extends Component {
 
                         <div className = "card-body">
                             <p className = "card-text">{post.description.substring(0,100)}...</p>
-                            <Link to = {`/posts/${post.id}`} className = "btn btn-primary" onClick = {this.onClickSeeMore}>
+                            <Link to = {`/posts/${post.id}`} className = "btn btn-primary">
                                 See more...
                             </Link>
                         </div>
