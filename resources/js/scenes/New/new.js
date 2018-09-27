@@ -6,16 +6,10 @@ import PropTypes from "prop-types";
 
 class New extends Component {
     static defaultProps = {
-        user: [],
-        userError: false,
-        userLoad: false,
-        userSuccess: false,
+        user: []
     };
     static propTypes = {
-        user: PropTypes.array,
-        userError: PropTypes.bool,
-        userLoad: PropTypes.bool,
-        userSuccess: PropTypes.bool
+        user: PropTypes.array
     }
 
     constructor(props){ 
@@ -100,10 +94,7 @@ class New extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.login.user,
-    userError: state.login.user_error,
-    userLoad: state.login.user_load,
-    userSuccess:  state.login.user_success,
+    user: state.login.user
   });
   
 export default connect(mapStateToProps) (withAlert(New));

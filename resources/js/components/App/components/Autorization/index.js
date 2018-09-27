@@ -6,16 +6,10 @@ import PropTypes from "prop-types";
 export default function Authorization(WrappedComponent, allowedRoles){
   class WithAuthorization extends Component {
     static defaultProps = {
-      user: [],
-      userError: false,
-      userLoad: false,
-      userSuccess: false
+      user: []
     };
     static propTypes = {
       user: PropTypes.array.isRequired,
-      userError: PropTypes.bool,
-      userLoad: PropTypes.bool,
-      userSuccess: PropTypes.bool
     };
 
 
@@ -40,17 +34,14 @@ export default function Authorization(WrappedComponent, allowedRoles){
       if (allowedRoles.includes(role)) {
         return <WrappedComponent {...this.props} />
       } else {
-        this.handleAccessDenied()
+        this.handleAccessDenied();
         return <h1> Access Denied!</h1>
       }
     }
   }
 
   const mapStateToProps = (state) => ({
-      user: state.login.user,
-      userError: state.login.user_error,
-      userLoad: state.login.user_load,
-      userSuccess:  state.login.user_success,
+      user: state.login.user
   });
   const mapsDispatchToProps = (dispatch) => ({
       me: (url) => dispatch(me(url))

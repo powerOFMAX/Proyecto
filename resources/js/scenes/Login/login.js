@@ -6,15 +6,11 @@ import PropTypes from "prop-types";
 
 class Login extends Component {
   static defaultProps = {
-    user: [],
     userError: false,
-    userLoad: false,
     userSuccess: false
   };
   static propTypes = {
-    user: PropTypes.array,
     userError: PropTypes.bool,
-    userLoad: PropTypes.bool,
     userSuccess: PropTypes.bool
   };
 
@@ -22,7 +18,6 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      user: [],
       formData: {
         email: '',
         password: '',
@@ -47,7 +42,7 @@ class Login extends Component {
   }
 
   componentDidUpdate(){
-    if(this.props.user.length !== 0) {
+    if(this.props.userSuccess) {
       this.props.alert.success(`You 're logged`);
       this.props.history.push('/');
     }
@@ -91,9 +86,7 @@ class Login extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  user: state.login.user,
   userError: state.login.user_error,
-  userLoad: state.login.user_load,
   userSuccess:  state.login.user_success,
 });
 

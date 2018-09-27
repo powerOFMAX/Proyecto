@@ -8,11 +8,17 @@ import PropTypes from "prop-types";
 class Home extends Component {
     static defaultProps = {
         user: [],
-        post: []
+        userSuccess: false,
+        content: [],
+        contentError: false,
+        contentFetch: false
     };
     static propTypes = {
         user: PropTypes.array.isRequired,
-        post: PropTypes.array.isRequired
+        userSuccess:  PropTypes.bool,
+        content: PropTypes.array,
+        contentError: PropTypes.bool,
+        contentFetch: PropTypes.bool
     };
 
     constructor(props){
