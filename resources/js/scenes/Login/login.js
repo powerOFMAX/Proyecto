@@ -2,8 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { login } from '../../actions/login';
 import { withAlert } from "react-alert";
+import PropTypes from "prop-types";
 
 class Login extends Component {
+  static defaultProps = {
+    user: [],
+    userError: false,
+    userLoad: false,
+    userSuccess: false
+  };
+  static propTypes = {
+    user: PropTypes.array,
+    userError: PropTypes.bool,
+    userLoad: PropTypes.bool,
+    userSuccess: PropTypes.bool
+  };
+
   constructor(props){
     super(props);
 

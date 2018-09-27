@@ -2,9 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { withAlert } from "react-alert";
+import PropTypes from "prop-types";
 
 class New extends Component {
-    constructor(props){
+    static defaultProps = {
+        user: [],
+        userError: false,
+        userLoad: false,
+        userSuccess: false,
+    };
+    static propTypes = {
+        user: PropTypes.array,
+        userError: PropTypes.bool,
+        userLoad: PropTypes.bool,
+        userSuccess: PropTypes.bool
+    }
+
+    constructor(props){ 
         super(props);
         this.state = {
             formData: {

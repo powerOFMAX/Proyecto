@@ -1,9 +1,24 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { me } from '../../../../actions/login';
+import PropTypes from "prop-types";
 
 export default function Authorization(WrappedComponent, allowedRoles){
   class WithAuthorization extends Component {
+    static defaultProps = {
+      user: [],
+      userError: false,
+      userLoad: false,
+      userSuccess: false
+    };
+    static propTypes = {
+      user: PropTypes.array.isRequired,
+      userError: PropTypes.bool,
+      userLoad: PropTypes.bool,
+      userSuccess: PropTypes.bool
+    };
+
+
     constructor() {
       super();
       this.state = {

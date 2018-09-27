@@ -6,13 +6,11 @@ import thunk from 'redux-thunk';
 import rootReducers from '../../rootReducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-
 import Main  from '../App/components/Main';
 import NavBar from '../App/components/Nav';
 import Footer from '../App/components/Footer';
 
 import { BrowserRouter as Router } from 'react-router-dom';
-
 
 //React Alert 
 import { Provider as AlertProvider} from "react-alert";

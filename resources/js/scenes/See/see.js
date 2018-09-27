@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchContent } from "../../actions/app";
-
+import PropTypes from "prop-types";
 
 class See extends Component {
+    static defaultProps = {
+        content: [],
+        contentError: false,
+        contentFetch: false
+    };
+
+    static propTypes = {
+        content: PropTypes.array,
+        contentError: PropTypes.bool,
+        contentFetch: PropTypes.bool
+    };
+
     componentDidMount(){
         this.props.fetchContent(`/api/posts/${this.props.match.params.id}`);
     }

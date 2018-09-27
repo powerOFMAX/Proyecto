@@ -3,8 +3,18 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchContent } from "../../actions/app";
 import axios from 'axios';
+import PropTypes from "prop-types";
 
 class Home extends Component {
+    static defaultProps = {
+        user: [],
+        post: []
+    };
+    static propTypes = {
+        user: PropTypes.array.isRequired,
+        post: PropTypes.array.isRequired
+    };
+
     constructor(props){
         super(props);
         this.state = {

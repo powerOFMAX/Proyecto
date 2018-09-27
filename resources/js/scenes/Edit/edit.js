@@ -3,15 +3,28 @@ import { connect } from 'react-redux';
 import { fetchContent } from '../../actions/app';
 import axios from 'axios';
 import { withAlert } from "react-alert";
+import PropTypes from "prop-types";
 
 class Edit extends Component {
+    static defaultProps = {
+        content: [],
+        contentError: false,
+        contentFetch: false
+    };
+
+    static propTypes = {
+        content: PropTypes.array.isRequired,
+        contentError: PropTypes.bool,
+        contentFetch: PropTypes.bool
+    };
+
     constructor(props){
         super(props);
         this.state = {
             formData: {
                 title: '',
                 description: '',
-            },
+            }
         }
     }
     
