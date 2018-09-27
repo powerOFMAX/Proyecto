@@ -68,8 +68,8 @@ class Home extends Component {
                 {this.props.userSuccess  && <h3> Hola {this.props.user.name}! </h3> }
                 {this.props.user.rol==='ADMIN' && 
                     <div>
-                        <Link to = {`/new`}>
-                            <button className = "btn btn-secondary "> Create New </button>
+                        <Link to = {`/new`} className = "btn btn-secondary ">
+                            Create New
                         </Link>
                     </div> 
                 }
@@ -84,18 +84,18 @@ class Home extends Component {
 
                             {this.props.user.rol==='ADMIN' && 
                                 <div className="col-lg">
-                                    <Link to = {`/edit/${post.id}`}>
-                                        <span className = "badge badge-info" onClick = {this.onClickEdit}> Edit </span>
+                                    <Link to = {`/edit/${post.id}`} className = "badge badge-info" onClick = {this.onClickEdit}>
+                                        Edit
                                     </Link>
-                                        <span className = "badge badge-danger" dusk={`delete-${post.id}`} onClick = {() => this.handleDelete(post.id)}> Delete </span>
+                                    <a href="javascript:;" className = "badge badge-danger" dusk={`delete-${post.id}`} onClick = {() => this.handleDelete(post.id)}> Delete </a>
                                 </div>
                             }
                         </div>
 
                         <div className = "card-body">
                             <p className = "card-text">{post.description.substring(0,100)}...</p>
-                            <Link to = {`/posts/${post.id}`}>
-                                <button className = "btn btn-primary" onClick = {this.onClickSeeMore}> See more... </button>
+                            <Link to = {`/posts/${post.id}`} className = "btn btn-primary" onClick = {this.onClickSeeMore}>
+                                See more...
                             </Link>
                         </div>
                     </div>
