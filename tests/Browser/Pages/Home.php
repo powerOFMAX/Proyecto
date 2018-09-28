@@ -44,7 +44,7 @@ class Home extends Page
         $browser->press('@edit-'.$id);
     }
 
-    public function deletePost(Browser $browser)
+    public function deletePost(Browser $browser,$id)
     {
         $browser->press('@delete-'.$id)->acceptDialog();
     }

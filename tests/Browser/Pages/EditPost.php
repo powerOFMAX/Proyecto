@@ -8,14 +8,21 @@ use Laravel\Dusk\Page;
 class EditPost extends Page
 { 
 
+    public $id;
+
+    public function __construct($param) {
+        $this->id = $param;
+    }
+    
     /**
      * Get the URL for the page.
      *
      * @return string
      */
-    public function url($id)
-    {
-        return '/edit/'.$id;
+    
+    public function url()
+    {   
+        return '/edit/'.$this->id;
     }
 
     /**
@@ -24,9 +31,10 @@ class EditPost extends Page
      * @param  Browser  $browser
      * @return void
      */
-    public function assert(Browser $browser,$id)
+
+    public function assert(Browser $browser)
     {
-        $browser->assertPathIs($this->url($id));
+        $browser->assertPathIs($this->url());
     }
 
     /**
