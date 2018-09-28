@@ -34,17 +34,31 @@ class Login extends Component {
     });
   }
     
-  handleSubmit(e){
+  async handleSubmit(e){
     e.preventDefault();
-    if((this.state.formData.email.length > 0) && (this.state.formData.password.length > 0)){
-      this.props.login(`/api/login`,this.state.formData);
+    if(this.state.formData.email.length < 1) {
+      this.props.aler.error('The email is required');
+      return false;
     }
-  }
-
-  componentDidUpdate(){
-    if(this.props.userSuccess) {
+    if(this.state.formData.email.length > 255) {
+      this.props.aler.error('The max of caracters is 255 at the email');
+      return false;
+    }
+    if(this.state.formData.password.length < 1) {
+      this.props.alert.error('The password is required');
+      return false;
+    }
+    if(this.state.formData.password.length > 255) {
+      this.props.aler.error('The max of caracters is 255 at the password');
+      return false;
+    }
+    
+    try {
+      await this.props.login(`/api/login`,this.state.formData);
       this.props.alert.success(`You 're logged`);
-      this.props.history.push('/');
+      this.props.history.push('/');   
+    } catch (error) {
+      this.props.alert.error('Error login incorrect');
     }
 
   }
@@ -55,12 +69,6 @@ class Login extends Component {
       <div className="card centered">
         <div className="card-body">
             <div className="col-xl">
-              {this.props.userError && 
-                <div className="alert alert-danger" role="alert">
-                    <strong>Error!</strong> Login Fail, make sure to put the correct user!.
-                </div>
-              }
-
               <div>
                 <h3>Login</h3>
               </div>

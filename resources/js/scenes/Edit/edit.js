@@ -69,8 +69,8 @@ class Edit extends Component {
             this.props.alert.error('The title is required.');
             return false;
         }
-        if(data.title.length>255) {
-            this.props.aler.error('The max of caracters is 255 at the title');
+        if(data.title.length > 255) {
+            this.props.alert.error('The max of caracters is 255 at the title');
             return false;
         }
         if (data.description.length < 1 ) {

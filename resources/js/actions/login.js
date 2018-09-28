@@ -7,14 +7,19 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_ERROR = 'LOGOUT_ERROR'; 
 
 export function login(url, data){
-    return async (dispatch) => {
-        try {
-            dispatch(loginLoad())
-            const response = await axios.post(url, data);
-            dispatch(loginSuccess(response.data));
-        } catch (error) {
-            dispatch(loginError());
-        }
+    
+    return (dispatch) => {
+        return new Promise( async (resolve, reject) => {
+            try {
+                dispatch(loginLoad());
+                const response = await axios.post(url, data);
+                dispatch(loginSuccess(response.data));
+                resolve(response);
+            } catch (error) {
+                dispatch(loginError());
+                reject(error);
+            }
+        });
     };
 }
 
@@ -35,7 +40,7 @@ export function logout(url){
             await axios.post(url);
             dispatch(logoutSuccess());
         } catch (error) {
-            dispatch(logoutError())
+            dispatch(logoutError());
         }
     }
 }
