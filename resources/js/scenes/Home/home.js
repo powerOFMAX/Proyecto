@@ -39,6 +39,16 @@ class Home extends Component {
         }
     }
     
+    loadMore(e){
+        e.preventDefault();
+        this.props.fetchContent(`${this.props.nextPageUrl}`);
+    }
+
+    loadPrevius(e){
+        e.preventDefault();
+        this.props.fetchContent(`${this.props.prevPageUrl}`);
+    }
+
     setPost(){
         this.setState({
             posts: this.props.content
@@ -58,7 +68,7 @@ class Home extends Component {
                 console.error('Error on delete' + e.message);
         }
     }
-    
+
     render() {
         if (this.props.contentFetch){
             return <h1> Loading Posts!! </h1>
@@ -88,12 +98,12 @@ class Home extends Component {
                                 <h5> {post.title} </h5>
                             </div>
 
-                            {this.props.user.rol==='ADMIN' && 
+                            {this.props.user.rol === 'ADMIN' && 
                                 <div className="col-lg">
-                                    <Link to = {`/edit/${post.id}`} className = "badge badge-info" dusk={`edit-${post.id}`}>
+                                    <Link to = {`/edit/${post.id}`} className = "badge badge-info" dusk = {`edit-${post.id}`}>
                                         Edit
                                     </Link>
-                                    <a href="javascript:;" className = "badge badge-danger" dusk={`delete-${post.id}`} onClick = {() => this.handleDelete(post.id)}> Delete </a>
+                                    <a href = "javascript:;" className = "badge badge-danger" dusk = {`delete-${post.id}`} onClick = {() => this.handleDelete(post.id)}> Delete </a>
                                 </div>
                             }
                         </div>
@@ -106,6 +116,23 @@ class Home extends Component {
                         </div>
                     </div>
                 ))}
+
+                       
+                <nav>
+                    <ul className="pagination">
+                        {this.props.currentPage === 1 ? (
+                            <li className = "page-item disabled"><a className = "page-link" href="#" onClick = {(e) => this.loadPrevius(e)}>Previous</a></li>
+                        ):(
+                            <li className = "page-item"><a className="page-link" href="#" onClick = {(e) => this.loadPrevius(e)}>Previous</a></li>
+                        )}
+                        
+                        {this.props.currentPage ===  this.props.lastPage ? (
+                            <li className = "page-item disabled"><a className = "page-link" href="#" onClick = {(e) => this.loadMore(e)}>Next</a></li>
+                        ):(
+                            <li className = "page-item"><a className = "page-link" href="#" onClick = {(e) => this.loadMore(e)}>Next</a></li>
+                        )} 
+                    </ul>
+                </nav>
             </div>
         );
     }
@@ -114,9 +141,13 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
     user: state.login.user,
     userSuccess: state.login.user_success,
-    content: state.app.content,
+    content: state.app.content.data,
     contentError: state.app.content_error,
-    contentFetch: state.app.content_fetch
+    contentFetch: state.app.content_fetch,
+    currentPage: state.app.content.current_page,
+    lastPage: state.app.content.last_page,
+    nextPageUrl: state.app.content.next_page_url,
+    prevPageUrl: state.app.content.prev_page_url,
 });
 
 const mapsDispatchToProps = (dispatch) => ({
