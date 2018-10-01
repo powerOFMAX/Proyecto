@@ -4,11 +4,14 @@ namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page;
+use Tests\Browser\Components\CompleteForm;
 
 class EditPost extends Page
 { 
 
-    public $id;
+    protected $id;
+    protected $title;
+    protected $description;
 
     public function __construct($param) {
         $this->id = $param;
@@ -25,6 +28,16 @@ class EditPost extends Page
         return '/edit/'.$this->id;
     }
 
+    public function makeEdit(Browser $browser, $title, $description)
+    {
+        $this->title = $title;
+        $this->description = $description;
+
+        $browser->within(new CompleteForm, function ($edit) {
+            $edit->fillForm('title', $this->title, 'description', $this->description);
+        })
+        ->press('Submit');
+    } 
     /**
      * Assert that the browser is on the page.
      *
