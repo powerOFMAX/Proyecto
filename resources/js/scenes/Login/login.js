@@ -72,7 +72,7 @@ class Login extends Component {
               <div>
                 <h3>Login</h3>
               </div>
-              <form dusk="login-form" onSubmit = {(e) => this.handleSubmit(e)}>
+              <form dusk="form" onSubmit = {(e) => this.handleSubmit(e)}>
                 <div className="form-group centered">
                     <label>Email</label>
                     <input  type= "email" dusk="email" name='email' className="form-control" placeholder="Email address" value={this.state.email} onChange= {(e) => this.handleInputChange(e.target)} required/>

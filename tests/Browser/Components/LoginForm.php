@@ -4,18 +4,19 @@ namespace Tests\Browser\Components;
 
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Component as BaseComponent;
+use Tests\Browser\Components\SimpleForm;
 
-
-class CompleteForm extends BaseComponent
+class LoginForm extends SimpleForm
 {
     /**
      * Get the root selector for the component.
      *
      * @return string
      */
+
     public function selector()
     {
-        return '@login-form';
+        return '@form';
     }
 
     /**
@@ -37,14 +38,8 @@ class CompleteForm extends BaseComponent
     public function elements()
     {
         return [
-            '@element' => '#selector',
+            '@email' => 'email',
+            '@password' => 'password'
         ];
-    }
-
-    public function fillForm($browser, $emailID, $email, $passwordID, $password)
-    {
-        $browser
-            ->type($emailID, $email)
-            ->type($passwordID, $password);
     }
 }

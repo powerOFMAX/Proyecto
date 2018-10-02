@@ -4,8 +4,8 @@ namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page;
-use Tests\Browser\Components\CompleteForm;
-
+use Tests\Browser\Components\SimpleForm;
+use Tests\Browser\Components\LoginForm;
 
 class Login extends Page
 {
@@ -34,8 +34,12 @@ class Login extends Page
         $this->email = $email;
         $this->password = $password;
         
-        $browser->with(new CompleteForm, function ($login) {
-            $login->fillForm('email',$this->email,'password',$this->password);
+        $browser->with(new SimpleForm, function ($login) {
+            $value= [
+                'email' => $this->email,
+                'password' => $this->password
+            ];
+            $login->fillForm('form', $value);
         })
         ->press('Login in');
     }

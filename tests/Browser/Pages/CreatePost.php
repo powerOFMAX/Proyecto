@@ -4,7 +4,7 @@ namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page;
-use Tests\Browser\Components\CompleteForm;
+use Tests\Browser\Components\SimpleForm;
 
 class CreatePost extends Page
 {
@@ -32,8 +32,12 @@ class CreatePost extends Page
         $this->title = $title;
         $this->description = $description;
 
-        $browser->with(new CompleteForm, function ($create) {
-            $create->fillForm('title', $this->title,'description', $this->description);
+        $browser->with(new SimpleForm, function ($create) {
+            $value= [
+                'title' => $this->title,
+                'description' => $this->description
+            ];
+            $create->fillForm('form',$value);
         })
         ->press('Submit');
     }

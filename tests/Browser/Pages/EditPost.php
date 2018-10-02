@@ -4,7 +4,7 @@ namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page;
-use Tests\Browser\Components\CompleteForm;
+use Tests\Browser\Components\SimpleForm;
 
 class EditPost extends Page
 { 
@@ -33,8 +33,12 @@ class EditPost extends Page
         $this->title = $title;
         $this->description = $description;
 
-        $browser->within(new CompleteForm, function ($edit) {
-            $edit->fillForm('title', $this->title, 'description', $this->description);
+        $browser->within(new SimpleForm, function ($edit) {
+            $value = [
+                'title' => $this->title,
+                'description' => $this->description
+            ];
+            $edit->fillForm('form', $value);
         })
         ->press('Submit');
     } 

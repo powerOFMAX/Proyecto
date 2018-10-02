@@ -71,7 +71,7 @@ class New extends Component {
             <div className = "card centered">
                 <div className="card-body">
                     <div className="col-xl">
-                        <form dusk="login-form" onSubmit = {(e) => this.handleSubmit(e)}>
+                        <form dusk="form" onSubmit = {(e) => this.handleSubmit(e)}>
                             <h4>Creando un nuevo post:</h4>
                             <label> Title </label>
                             <div>

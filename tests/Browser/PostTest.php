@@ -30,20 +30,16 @@ class PostTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) {
             //Login and Create a Post
-            $browser->visit(new Login)->loginIn('admin@admin.com', '1234')
+            $browser->maximize()->visit(new Login)->loginIn('admin@admin.com', '1234')
                     ->waitForLocation('/')
                     ->on(new Home)->newPost()
                     ->on(new CreatePost)->newPost($this->title, $this->description);
             $this->post = Post::where(['title' => $this->title])->first()->id;
-            //Ask for the state content
-            $browser->waitUntil('window.store.getState().app.content.length > 0', 15);
-            //Edit and Delete a Post 
-            $browser->on(new Home)->editPost($this->post)
-                    ->on(new EditPost($this->post))
-                        ->makeEdit('Modified '.$this->title, 'Modified '.$this->description)
-                    ->waitForLocation('/')
-                        ->on(new Home)->deletePost($this->post)
-                    ->clickLink('Logout');
+
+            //Edit and Delete a Post
+            $browser->waitForLocation('/')->on(new Home)->editPost($this->post)
+                    ->on(new EditPost($this->post));
+                        
         });
     }
 }
