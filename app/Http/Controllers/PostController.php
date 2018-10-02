@@ -12,7 +12,7 @@ class PostController extends Controller
     {   
         try
         {
-            $post = Post::orderBy("created_at",'desc')->paginate(5);
+            $post = Post::orderBy("created_at",'desc')->paginate(10);
             return response()->json($post);
         }
         catch(\Exception $e)
